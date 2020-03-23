@@ -1,14 +1,15 @@
-<!doctype html>
+
+3<!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>DPDK</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/solarized.css">
 		<link rel="stylesheet" href="css/anime.css">
 
 		<!-- Theme used for syntax highlighting of code -->
@@ -22,26 +23,56 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
-		
+		<style>
+			.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+						  text-transform: none;
+				  }
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				 <section>Slide 1
+				<section>
+					<h2>Data Plane Development Kit</h2>
+					<h3>CS694: Seminar Presentation</h3>
+					<p>
+						<small>Prateek Agarwal</small>
+					</p>
+				</section>
+				 <section>Motivation
 					
 				</section> 
+						
+				<section>Traditional Linux Stack
+				
+				<p class="square1" >
+				</p>	
+				<script src='plugin/anime/anime.min.js'></script>
+				
+				</section>
+				<section> <h4>Traditional Linux Stack</h4>
+				<svg >
+
+					<rect  x="30%" width="40%" height="60%" style="fill:#B2CECB;stroke-width:1;stroke:rgb(100,100,100)">
+					
+					</rect>
+					<text  x= "30%"y="40%"fill="red">Kernel</text> 
+					<circle cx = "30%" cy = "70%" r = "10px" />
+				</svg>
+				</section>
 				<section>Slide 2
 				<p class="square" style="background-color: red;" >
 				</p> 
-				<script src='plugin/anime/anime.min.js'></script>
+				<!-- <script src='plugin/anime/anime.min.js'></script> -->
 				<script>
 					anime(
 						{targets: '.square',
-						delay:10000,
+						delay:100,
+					
 						translateX:250,
-						translateY:200
+						translateY:200,
+						loop:true
 						});
-		
 				
 				</script>
 			
@@ -61,9 +92,11 @@
 				hash: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/zoom-js/zoom.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/highlight/highlight.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
+					
 				]
 			});
 		</script>
