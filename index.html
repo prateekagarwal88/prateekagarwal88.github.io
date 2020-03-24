@@ -1,5 +1,5 @@
 
-3<!doctype html>
+<!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -40,35 +40,129 @@
 					</p>
 				</section>
 				 <section>Motivation
+				<script src='plugin/anime/anime.js'></script>
 					
 				</section> 
 						
 				<section>Traditional Linux Stack
-				
-				<p class="square1" >
-				</p>	
-				<script src='plugin/anime/anime.min.js'></script>
-				
-				</section>
-				<section> <h4>Traditional Linux Stack</h4>
-				<svg >
+					<div class = "kerneldemo">
+						<div class="userspace">
+						<!-- <div class = "application"> -->
+								<span class="application1">A1</span>
+								<span class="application1">A2</span>
+								<span class="application1">A3</span>
+								<p style="position:relative;top:-30px;"> <span class="labels">User</span></p>
+								
+								<!-- </div> -->
+						</div>
+						<div class="kernelspace">
+							<p class = "kk">
 
-					<rect  x="30%" width="40%" height="60%" style="fill:#B2CECB;stroke-width:1;stroke:rgb(100,100,100)">
-					
-					</rect>
-					<text  x= "30%"y="40%"fill="red">Kernel</text> 
-					<circle cx = "30%" cy = "70%" r = "10px" />
-				</svg>
-				</section>
-				<section>Slide 2
+						</p>
+						<p><span class="labels">Kernel</span> </p>
+
+
+						</div>
+						<div class = "NIC">
+							NIC
+						</div>
+						<div class= "packet">
+							<div class="payload">
+
+							</div>
+							<div class="header1">
+
+							</div>
+						<!-- </div> -->
+						
+					</div>
+<script>
+	var t1 = anime.timeline({
+		easing:'linear',
+		// duration:100,
+		// targets:'.packet',
+		// translateX: 130,
+		// delay:100,
+		loop:true
+	});
+	t1.add({
+		targets:['.payload', '.header1'],
+		keyframes: [
+    {translateX: 200, duration: 1000, easing:'linear'},
+	]
+	});
+	t1.add({
+		targets:'.header1',
+		translateY:-50,
+		background:'#FF0000',
+		easing: 'linear',
+		
+	},1000);
+	t1.add({
+		targets:'.payload',
+		translateY:-50,
+		background:'#00FF00',
+		easing: 'linear',
+		
+	},1000);
+	
+	
+	// anime({
+	// 	targets:'.packet',
+	// 	keyframes: [
+    // {translateX: 200, duration: 1000, easing:'linear'},
+	// // {rotate: -90, duration:10},
+    // {translateY: -200, duration: 1000, easing:'linear'},
+
+	
+	// ]
+	// })
+//     {translateX: 250},
+//     {translateY: 40},
+//     {translateX: 0},
+//     {translateY: 0}
+//   ],
+	// }
+// 	anime({
+//   targets: '.animation-keyframes-demo .el',
+//   keyframes: [
+//     {translateY: -40},
+//     {translateX: 250},
+//     {translateY: 40},
+//     {translateX: 0},
+//     {translateY: 0}
+//   ],
+	// t1.add(
+	// 	{
+	// 	targets:'.packet',
+	// 	translateX: 130,
+	// 	duration: 1000,
+	// 	// delay:100,
+	// 	// loop:true
+			
+	// 	}
+	// );
+	// t1.add({
+	// 	targets:'.packet',
+	// 	duration:10,
+	// 	rotate: 90
+	// });
+	// t1.add({
+	// 	targets:'.packet',
+	// 	duration:1000,
+	// 	translateY: 100,
+	// });
+</script>		
+</section>
+
+<section>Slide 2
 				<p class="square" style="background-color: red;" >
 				</p> 
-				<!-- <script src='plugin/anime/anime.min.js'></script> -->
 				<script>
 					anime(
 						{targets: '.square',
 						delay:100,
-					
+
 						translateX:250,
 						translateY:200,
 						loop:true
