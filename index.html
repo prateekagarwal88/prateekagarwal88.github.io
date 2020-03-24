@@ -43,135 +43,130 @@
 				<script src='plugin/anime/anime.js'></script>
 					
 				</section> 
-						
-				<section>Traditional Linux Stack
+				<section>Linux Network Stack
 					<div class = "kerneldemo">
 						<div class="userspace">
-						<!-- <div class = "application"> -->
 								<span class="application1">A1</span>
 								<span class="application1">A2</span>
 								<span class="application1">A3</span>
 								<p style="position:relative;top:-30px;"> <span class="labels">User</span></p>
-								
-								<!-- </div> -->
 						</div>
 						<div class="kernelspace">
-							<p class = "kk">
-
-						</p>
+						<p class = "kk"></p>
 						<p><span class="labels">Kernel</span> </p>
-
-
 						</div>
-						<div class = "NIC">
-							NIC
-						</div>
+						<div class = "NIC">NIC</div>
 						<div class= "packet">
-							<div class="payload">
+							<div class="payload"></div>
+							<div class="header1"></div>
+						</div>
+						<script src='plugin/anime/anime.js'></script>
+						<script>
+							var t1 = anime.timeline({
+								easing:'linear',
+								loop:true
+							});
+							t1.add({
+								targets:['.payload', '.header1'],
+								keyframes: [
+							{translateX: 200, duration: 1000, easing:'linear'}
+							]
+							});
+							t1.add({
+								targets:'.header1',
+								translateY:-50,
+								background:'#FF0000',
+								easing: 'linear',
+								
+							},1000);
+							t1.add({
+								targets:'.payload',
+								translateY:-50,
+								background:'#00FF00',
+								easing: 'linear',
+								
+							},1000);
+							t1.add({
+								// moving to user
+								targets:'.payload',
+								translateY:-250,
+								// background:'#0000FF',
+								easing: 'linear',
+								
+							},2000);
+							t1.add({
+								// moving to user
+								targets:'.header1',
+								translateY:-250,
+								easing: 'linear',
+								background:'#ACCDA3',
+							},2000);
+							t1.add({
+								// moving to user
+								
+								targets:'.payload',
+								translateY:{value:'-=50'},
+								background:'#0000FF',
+								easing: 'linear',
+								
+							});
+							t1.add({
+							
+								
+								targets:'.payload',
+								translateY:{value:'-=50'},
+								translateX:{value:'-=25'},
+								// background:'#FFFFFF',
+								easing: 'linear',
+								
+							});
 
-							</div>
-							<div class="header1">
+						</script>
+						</div>
+				</section>		
+					
 
-							</div>
-						<!-- </div> -->
-						
-					</div>
-<script>
-	var t1 = anime.timeline({
-		easing:'linear',
-		// duration:100,
-		// targets:'.packet',
-		// translateX: 130,
-		// delay:100,
-		loop:true
-	});
-	t1.add({
-		targets:['.payload', '.header1'],
-		keyframes: [
-    {translateX: 200, duration: 1000, easing:'linear'},
-	]
-	});
-	t1.add({
-		targets:'.header1',
-		translateY:-50,
-		background:'#FF0000',
-		easing: 'linear',
-		
-	},1000);
-	t1.add({
-		targets:'.payload',
-		translateY:-50,
-		background:'#00FF00',
-		easing: 'linear',
-		
-	},1000);
-	
-	
-	// anime({
-	// 	targets:'.packet',
-	// 	keyframes: [
-    // {translateX: 200, duration: 1000, easing:'linear'},
-	// // {rotate: -90, duration:10},
-    // {translateY: -200, duration: 1000, easing:'linear'},
-
-	
-	// ]
-	// })
-//     {translateX: 250},
-//     {translateY: 40},
-//     {translateX: 0},
-//     {translateY: 0}
-//   ],
-	// }
-// 	anime({
-//   targets: '.animation-keyframes-demo .el',
-//   keyframes: [
-//     {translateY: -40},
-//     {translateX: 250},
-//     {translateY: 40},
-//     {translateX: 0},
-//     {translateY: 0}
-//   ],
-	// t1.add(
-	// 	{
-	// 	targets:'.packet',
-	// 	translateX: 130,
-	// 	duration: 1000,
-	// 	// delay:100,
-	// 	// loop:true
+			<!-- <section>
+				<h4>
+					Interrupts hurt performance
+				</h4>
+				<img src="whatsapp.jpg"/>
 			
-	// 	}
-	// );
-	// t1.add({
-	// 	targets:'.packet',
-	// 	duration:10,
-	// 	rotate: 90
-	// });
-	// t1.add({
-	// 	targets:'.packet',
-	// 	duration:1000,
-	// 	translateY: 100,
-	// });
-</script>		
-</section>
-
-<section>Slide 2
-				<p class="square" style="background-color: red;" >
-				</p> 
-				<script>
-					anime(
-						{targets: '.square',
-						delay:100,
-
-						translateX:250,
-						translateY:200,
-						loop:true
-						});
+			<text>
+				New API(NAPI) is polling Based.
+			</text>
 				
-				</script>
-			
-			</section>
-				
+		</section> -->
+		<!-- <section>
+			<h4>Alternatives</h4>
+			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+			<script type="text/javascript">
+			  google.charts.load('current', {'packages':['corechart']});
+			  google.charts.setOnLoadCallback(drawChart);
+		
+			  function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+				  ['Age', 'Weight'],
+				  [ 0,      1],
+				  [ 1,      0],
+				  [1,0.04],
+				  [ 1,    1],
+					]);
+		
+				var options = {
+				  title: 'Performance vs. Cost Effectiveness/Flexibility',
+				  vAxis: {title: 'Performance', minValue: 0, maxValue: 1},
+				  hAxis: {title: 'Cost Effectiveness/Flexibility', minValue: 0, maxValue: 1},
+				  legend: 'none'
+				};
+		
+				var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+		
+				chart.draw(data, options);
+			  }
+			</script>
+			 <div id="chart_div" style="width: 900px; height: 600px;"></div>
+		</section> -->
 		
 			</div>
 		</div>
@@ -196,3 +191,38 @@
 		</script>
 	</body>
 </html>
+<html>
+  <!-- <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Age', 'Weight'],
+          [ 8,      12],
+          [ 4,      5.5],
+          [ 11,     14],
+          [ 4,      5],
+          [ 3,      3.5],
+          [ 6.5,    7]
+        ]);
+
+        var options = {
+          title: 'Age vs. Weight comparison',
+          hAxis: {title: 'Age', minValue: 0, maxValue: 15},
+          vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html> -->
