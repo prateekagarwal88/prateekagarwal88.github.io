@@ -116,36 +116,7 @@ img{
 
 object-fit: cover;
 }
-#polling #SPH #DPDK #Polling{
-  font: 20px;
-  z-index: 10;
-  position: relative;
-  left:-30%;
-  top:-30%;
-  width: 20%;
-  height:20%;
-  color:black;
-}
-.temp{
 
-
-position:relative;
-top:10%;
-width:20%;
-height:30%;
-background-color: blue;
-
-
-}
-#hey{
-
-  position:relative;
-  top:-60%;
-  width:50%;
-  height:50%;
-  z-index: 1000;
-  background-color: red;
-}
 #trad{
   position:relative;
   top:-15%;
