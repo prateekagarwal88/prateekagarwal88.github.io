@@ -190,38 +190,49 @@ height:60%;
       position:relative;
       width: 2px;
     background-color: black;
-    /* display: none; */
+    /* top:200px; */
        }
-  #arrow1{
+  #Carr{
     left:450px;
     height:320px;
-    top: -820px;
+    top: -1300px;
+    z-index:100;
+    display:none;
     transform:rotate(-58deg); 
+    /* display: none; */
   
     background-color:green;
   }
-  #arrow2{
+  #Aarr{
+    display: none;
+
     left:450px;
     height:300px;
-    top: -1240px;
+    top:-740px;
+    z-index:100;
     transform:rotate(-90deg); 
     background-color:blue;
   }
-  #arrow3{
+  #Barr{
+    display: none;
+
     left:450px;
     height:300px;
-    top: -1340px;
+    top: -900px;
     transform:rotate(70deg);
     background-color:orange; 
 }
-  #arrow4{
+  #Darr{
+    display: none;
+
     left:450px;
     height:340px;
-    top: -1740px;
-    transform:rotate(45deg); 
+    top: -1660px;
+    transform:rotate(43deg); 
     background-color: violet;
   }
-  .playcuckoo{
+  #playcuckoo{
+
     position:relative;
     background-color: lightgray;
     width:15%;
