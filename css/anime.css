@@ -118,6 +118,7 @@ object-fit: cover;
 }
 
 #trad{
+  display:none;
   position:relative;
   top:-15%;
   left:33%;
@@ -126,6 +127,7 @@ font-size: 20px;
 color:red;
 }
 #sph{
+  display:none;
   position:relative;
   top:-82%;
   left:-30%;
@@ -133,29 +135,34 @@ color:red;
 font-size: 20px;
 color:red;
 }
-#dpdk{
-  position:relative;
-  top:-88%;
-  left:33%;
-  z-index : 100;
-font-size: 20px;
-color:red;
-}
+
 #napi{
+  display:none;
   position:relative;
-  top:-42%;
+  top:-38%;
   left:33%;
   z-index : 100;
   font-size: 20px;
   color:red;
 }
+#dpdk{
+  display:none;
+  position:relative;
+  top:-460px;
+  left:33%;
+  z-index : 100;
+font-size: 20px;
+color:red;
+}
 #twofivex{
+
+  display:none;
   position:relative;
   top:-70%;
   transform:rotate(-90deg);
   left:33%;
   z-index : 100;
-font-size: 20px;
+font-size: 24px;
 color:red;
 }
 .table1   {
