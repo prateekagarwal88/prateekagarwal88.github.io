@@ -1,0 +1,17 @@
+.kerneldemo{
+    width : 900px;
+    height: 512px;
+    z-index:-1;
+    border-radius: 10%;
+    /* background-color:#252525; */
+  /* font-size: 20px; */
+  }
+  .arrow{
+    position:relative;
+    left:200px;
+    width: 3px;
+    height: 200px;
+    background-color: black;
+    transform:rotate(-45deg);
+
+  }

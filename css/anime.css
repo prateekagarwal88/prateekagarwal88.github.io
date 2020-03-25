@@ -158,3 +158,29 @@ color:red;
 font-size: 20px;
 color:red;
 }
+.table1   {
+position:relative;
+/* padding-top: 30%; */
+font-size:20px;
+text-align:right;
+top:100px;
+left:-20%;
+height:60%;
+  width:15%;
+  border: 1px solid #657b83;
+}
+/* tr td{
+  position:relative;
+  width:100%;
+  text-align: right;
+} */
+.table2  {
+  position:relative;
+  /* padding-top: 30%; */
+  font-size: 20px;
+  top:-40%;
+  left:20%;
+  height:60%;
+    width:15%;
+    border: 1px solid #657b83;
+  }
