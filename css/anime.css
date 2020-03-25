@@ -161,6 +161,7 @@ color:red;
 .table1   {
 position:relative;
 /* padding-top: 30%; */
+table-layout:auto;
 font-size:20px;
 text-align:right;
 top:100px;
@@ -177,10 +178,57 @@ height:60%;
 .table2  {
   position:relative;
   /* padding-top: 30%; */
+  table-layout: auto;
   font-size: 20px;
   top:-40%;
   left:20%;
   height:60%;
     width:15%;
     border: 1px solid #657b83;
+  }
+  .arrow{
+      position:relative;
+      width: 2px;
+    background-color: black;
+    /* display: none; */
+       }
+  #arrow1{
+    left:450px;
+    height:320px;
+    top: -820px;
+    transform:rotate(-58deg); 
+  
+    background-color:green;
+  }
+  #arrow2{
+    left:450px;
+    height:300px;
+    top: -1240px;
+    transform:rotate(-90deg); 
+    background-color:blue;
+  }
+  #arrow3{
+    left:450px;
+    height:300px;
+    top: -1340px;
+    transform:rotate(70deg);
+    background-color:orange; 
+}
+  #arrow4{
+    left:450px;
+    height:340px;
+    top: -1740px;
+    transform:rotate(45deg); 
+    background-color: violet;
+  }
+  .playcuckoo{
+    position:relative;
+    background-color: lightgray;
+    width:15%;
+    height:15%;
+    top:-50px;
+    left:-10px;
+    font-size: 24px;
+    color: grey;
+    /* z-index:1000; */
   }

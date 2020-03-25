@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -10,15 +11,38 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="temp.css">
+       
+        <script src='../plugin/anime/anime.js'></script>
+            
     </head>
     <body>
-		<script src='../plugin/anime/anime.js'></script>
         <div class="kerneldemo">
             <div class="arrow">
-                
+
             </div>
-        
-        </div>        
-        
+            <button class="play">
+              Play
+            </button>
+            <button class="pause">
+              Pause
+            </button>
+                </div> 
+                <div class="arrow_box"></div>
+
+        <script >
+          var animation = anime({
+            targets: '.arrow',
+            translateX: 250,
+            delay:1000,
+            duration:1000,
+            background: '#000000',
+            loop:true,
+            easing:'linear'
+          });
+          
+          document.querySelector('kerneldemo .arrow .play').onclick = animation.play.then();
+
+          </script>
+            
     </body>
 </html>
