@@ -123,6 +123,93 @@
 						</div>
 				</section>		
 					
+		<section>Alternatives
+			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+			<script type="text/javascript">
+			google.charts.load('current', {'packages':['corechart']});
+      	google.charts.setOnLoadCallback(drawChart);
+      	function drawChart() {
+        	var data = google.visualization.arrayToDataTable([
+				['Cost Effective','Performance'],
+				[ 0,      1],
+				[ 1,      0],
+				[ 1,     1],
+				[ 1,0.04],
+			]);
+
+			var options = {
+			title: 'Performance vs. Cost Effectiveness',
+			hAxis: {title: 'Cost Effective/Flexiblility', minValue: 0, maxValue: 1},
+			vAxis: {title: 'Performance', minValue: 0, maxValue: 1},
+			legend: 'none'
+			};
+
+			var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+			chart.draw(data, options);
+		};
+	    </script>
+			<div class= "kerneldemo">
+				<div id="chart_div" style="width: 900px; height: 500px;"></div>
+				<div id = "trad">
+					Linux
+				</div>
+				<div id = "sph">
+					Special Purpose Hardware
+				</div>
+				
+				<div id="napi">
+					NAPI(Polling)
+				</div>
+				<div id="dpdk">
+					DPDK
+				</div>
+				<div id="twofivex">
+					25X faster 
+				</div>
+			</div>
+			<script>
+				document.getElementById("chart_div").onclick = function() {myFunction()};
+				var count = 0;
+				function myFunction() {
+					count= count+1;
+					
+					if(count==1){
+						document.getElementById("trad").style.display = "block";
+
+						return;
+					}
+					if(count==2){
+						document.getElementById("sph").style.display = "block";
+						return;
+					}
+					if(count==3){
+						document.getElementById("napi").style.display = "block";
+						return;
+					}
+					if(count==4){
+						document.getElementById("dpdk").style.display = "block";
+
+						return;
+					}
+					if(count==5){
+						document.getElementById("twofivex").style.display = "block";
+
+						return;
+					} else{
+						count = 0;
+						document.getElementById("twofivex").style.display = "none";
+						document.getElementById("dpdk").style.display = "none";
+						document.getElementById("napi").style.display = "none";
+						document.getElementById("sph").style.display = "none";
+						document.getElementById("trad").style.display = "none";
+
+					}
+
+					}
+			</script>
+			
+		</section>
 				<section> Cuckoo Hashing
 				<div class="kerneldemo">
 					<table class ="table1">
@@ -222,120 +309,74 @@
 					</script>
 					
 			</section>
-			<!-- <section>
-				<h4>
-					Interrupts hurt performance
-				</h4>
-				<img src="whatsapp.jpg"/>
-			
-			<text>
-				New API(NAPI) is polling Based.
-			</text>
-				
-		</section> -->
-		<!-- <section>
-			<h4>Alternatives</h4>
-			     
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-     
-      }
- 
-
-			</script>
-			 <div id="chart_div" style="width: 900px; height: 600px;"></div>
-			
-		</section> -->
-		<section>Alternatives
-			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-			<script type="text/javascript">
-			google.charts.load('current', {'packages':['corechart']});
-      	google.charts.setOnLoadCallback(drawChart);
-      	function drawChart() {
-        	var data = google.visualization.arrayToDataTable([
-				['Cost Effective','Performance'],
-				[ 0,      1],
-				[ 1,      0],
-				[ 1,     1],
-				[ 1,0.04],
-			]);
-
-			var options = {
-			title: 'Performance vs. Cost Effectiveness',
-			hAxis: {title: 'Cost Effective/Flexiblility', minValue: 0, maxValue: 1},
-			vAxis: {title: 'Performance', minValue: 0, maxValue: 1},
-			legend: 'none'
-			};
-
-			var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
-
-			chart.draw(data, options);
-		}
-	    </script>
-			<div class= "kerneldemo">
-				<div id="chart_div" style="width: 900px; height: 500px;"></div>
-				<div id = "trad">
-					Linux
-				</div>
-				<div id = "sph">
-					Special Purpose Hardware
-				</div>
-				
-				<div id="napi">
-					NAPI(Polling)
-				</div>
-				<div id="dpdk">
-					DPDK
-				</div>
-				<div id="twofivex">
-					25X faster 
-				</div>
-			</div>
-			<script>
-				document.getElementById("chart_div").onclick = function() {myFunction()};
-				var count = 0;
-				function myFunction() {
-					count= count+1;
-					
-					if(count==1){
-						document.getElementById("trad").style.display = "block";
-
-						return;
-					}
-					if(count==2){
-						document.getElementById("sph").style.display = "block";
-						return;
-					}
-					if(count==3){
-						document.getElementById("napi").style.display = "block";
-						return;
-					}
-					if(count==4){
-						document.getElementById("dpdk").style.display = "block";
-
-						return;
-					}
-					if(count==5){
-						document.getElementById("twofivex").style.display = "block";
-
-						return;
-					} else{
-						count = 0;
-						document.getElementById("twofivex").style.display = "none";
-						document.getElementById("dpdk").style.display = "none";
-						document.getElementById("napi").style.display = "none";
-						document.getElementById("sph").style.display = "none";
-						document.getElementById("trad").style.display = "none";
-
-					}
-
-					}
-			</script>
-			
-		</section>
 		<section>
-			
+			<h2>Core Functions</h2>
+				<ol>
+				<li>Memory</li>
+					<ul>
+						<li> mempool</li>
+						<li>mbuf</li>	
+						<li>ring</li>
+						<li>ring</li>	
+
+
+					</ul>
+				<li>Timer</li>
+				
+			</ol>
 		</section>
+	
+		<section>mempool1
+			<div class ="kerneldemo">
+				<img src="svgs/ring.svg" style="width:800px;height:500px;">
+			</img>
+			</div>
+				
+		</section>
+		<section> mempool2
+			<div class ="kerneldemo">
+				<img src="svgs/mbufring.svg" style="width:800px;height:500px;">
+			</img>
+			</div>
+				
+		</section>
+		<section>mempool3
+			<div class ="kerneldemo">
+				<img src="svgs/object_cache.svg" style="width:800px;height:500px;">
+			</img>
+			</div>
+				
+		</section>
+	
+<section>
+	<h3>DPDK:Core </h3>
+
+	<div id="container">
+
+  <div id="no1"><a href="">Core Functions</a></div>
+  <div id="line1"></div>
+	<div id="line2"></div>
+    <div id="line3"></div> 
+   <div id="line6"></div> 
+   <div id="no2"><a href="#">mempool</a></div>
+   <div id="no3"><a href="#">timer</a></div>
+	<div id="memline1"></div>
+    <div id="memline2"></div>
+    <div id="memline3"></div>
+    <div id="memline4"></div>
+    <div id="memline5"></div>
+	<div id="mbuf"><a href="#">mbuf</a></div>
+	<div id="ring"><a href="#">Ring</a></div>
+
+  	<!-- <div id="ring"><a href="#">ring </a></div>
+  	<div id="mbuf"><a href="#">ring </a></div> --> 
+
+	  <!-- <div id="mem2"></div>  -->
+  <!-- <div id="no4"><a href="#">Human Resources Director</a></div>
+  <div id="no5"><a href="#">Finance Director</a></div>  --> 
+   
+</div>
+</section>
 			</div>
 		</div>
 
