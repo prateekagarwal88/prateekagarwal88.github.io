@@ -1,21 +1,14 @@
-
 <!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 		<title>DPDK</title>
-
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/solarized.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 		<link rel="stylesheet" href="css/anime.css">
-
-		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
-
-		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
@@ -23,6 +16,31 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+	  google.charts.setOnLoadCallback(drawChart);
+	  function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Cost Effective','Performance'],
+			[ 0,      1],
+			[ 1,      0],
+			[ 1,     1],
+			[ 1,0.04],
+		]);
+
+		var options = {
+		title: 'Performance vs. Cost Effectiveness',
+		hAxis: {title: 'Cost Effective/Flexiblility', minValue: 0, maxValue: 1},
+		vAxis: {title: 'Performance', minValue: 0, maxValue: 1},
+		legend: 'none'
+		};
+
+		var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+		chart.draw(data, options);
+	};
+	</script>
 		<style>
 			.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
 						  text-transform: none;
@@ -124,38 +142,14 @@
 				</section>		
 					
 		<section>Alternatives
-			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-			<script type="text/javascript">
-			google.charts.load('current', {'packages':['corechart']});
-      	google.charts.setOnLoadCallback(drawChart);
-      	function drawChart() {
-        	var data = google.visualization.arrayToDataTable([
-				['Cost Effective','Performance'],
-				[ 0,      1],
-				[ 1,      0],
-				[ 1,     1],
-				[ 1,0.04],
-			]);
-
-			var options = {
-			title: 'Performance vs. Cost Effectiveness',
-			hAxis: {title: 'Cost Effective/Flexiblility', minValue: 0, maxValue: 1},
-			vAxis: {title: 'Performance', minValue: 0, maxValue: 1},
-			legend: 'none'
-			};
-
-			var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
-
-			chart.draw(data, options);
-		};
-	    </script>
+			
 			<div class= "kerneldemo">
 				<div id="chart_div" style="width: 900px; height: 500px;"></div>
 				<div id = "trad">
 					Linux
 				</div>
 				<div id = "sph">
-					Special Purpose Hardware
+					Special Purpose Hardware(IB)
 				</div>
 				
 				<div id="napi">
@@ -168,6 +162,9 @@
 					25X faster 
 				</div>
 			</div>
+			<aside class="notes">
+				IB: infiniband and HPC
+			</aside>
 			<script>
 				document.getElementById("chart_div").onclick = function() {myFunction()};
 				var count = 0;
@@ -309,74 +306,56 @@
 					</script>
 					
 			</section>
-		<section>
-			<h2>Core Functions</h2>
-				<ol>
-				<li>Memory</li>
-					<ul>
-						<li> mempool</li>
-						<li>mbuf</li>	
-						<li>ring</li>
-						<li>ring</li>	
-
-
-					</ul>
-				<li>Timer</li>
-				
-			</ol>
-		</section>
+			<section>
+				<h4>DPDK:Core </h4>
+				<div id="container">
+			  <div id="no1"><a href="">Core Functions</a></div>
+			  <div id="line1"></div>
+				<div id="line2"></div>
+				<div id="line3"></div> 
+			   <div id="line6"></div> 
+			   <div id="no2"><a href="#">mempool</a></div>
+			   <div id="no3"><a href="#">timer</a></div>
+				<div id="memline1"></div>
+				<div id="memline2"></div>
+				<div id="memline3"></div>
+				<div id="memline4"></div>
+				<div id="memline5"></div>
+				<div id="mbuf"><a href="#">mbuf</a></div>
+				<div id="ring"><a href="#">Ring</a></div>  
+			</div>
+			</section>		
 	
-		<section>mempool1
+		<section>mempool: ring
 			<div class ="kerneldemo">
-				<img src="svgs/ring.svg" style="width:800px;height:500px;">
+				<img src="svgs/ring.svg" style="width:800px;height:500px;border:none">
 			</img>
 			</div>
 				
 		</section>
-		<section> mempool2
+		<section> mempool: mbuf
 			<div class ="kerneldemo">
-				<img src="svgs/mbufring.svg" style="width:800px;height:500px;">
+				<img src="svgs/mbufring.svg" style="width:800px;height:500px;border:none">
 			</img>
 			</div>
 				
 		</section>
-		<section>mempool3
+		<section>mempool: local cache
 			<div class ="kerneldemo">
-				<img src="svgs/object_cache.svg" style="width:800px;height:500px;">
+				<img src="svgs/object_cache.svg" style="width:800px;height:500px;border:none">
 			</img>
 			</div>
 				
 		</section>
-	
-<section>
-	<h3>DPDK:Core </h3>
+		<section> mbuf
+			<div class ="kerneldemo">
+				<img src="svgs/mbuf2.svg" style="width:800px;height:500px;border:none">
+			</img>
+			</div>
+		</section>
+		<section> mbuf
 
-	<div id="container">
-
-  <div id="no1"><a href="">Core Functions</a></div>
-  <div id="line1"></div>
-	<div id="line2"></div>
-    <div id="line3"></div> 
-   <div id="line6"></div> 
-   <div id="no2"><a href="#">mempool</a></div>
-   <div id="no3"><a href="#">timer</a></div>
-	<div id="memline1"></div>
-    <div id="memline2"></div>
-    <div id="memline3"></div>
-    <div id="memline4"></div>
-    <div id="memline5"></div>
-	<div id="mbuf"><a href="#">mbuf</a></div>
-	<div id="ring"><a href="#">Ring</a></div>
-
-  	<!-- <div id="ring"><a href="#">ring </a></div>
-  	<div id="mbuf"><a href="#">ring </a></div> --> 
-
-	  <!-- <div id="mem2"></div>  -->
-  <!-- <div id="no4"><a href="#">Human Resources Director</a></div>
-  <div id="no5"><a href="#">Finance Director</a></div>  --> 
-   
-</div>
-</section>
+		</section>
 			</div>
 		</div>
 

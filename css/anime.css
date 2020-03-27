@@ -1,4 +1,4 @@
-.square,
+/* .square,
 .circle {
   pointer-events: none;
   position: relative;
@@ -7,7 +7,7 @@
   margin: 1px;
   background-color: currentColor;
   font-size: 14px;
-}
+} */
 .kerneldemo{
   width : 900px;
   height: 512px;
@@ -113,7 +113,7 @@ img{
  width: 50px;
  height:50 px;
  border:none;
-
+/* border-color: white; */
 object-fit: cover;
 }
 
