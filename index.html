@@ -51,6 +51,12 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
+					<p>There are notes on some presentations. You may view them by pressing S on keyboard.</p>
+					<p>Alternatives slide, you may have to reload the graph. I used google charts. sould have used some other framework. Will change if required
+						Kindly click anywhere on the graph to get the labels( 5 times)
+					</p>
+				</section>
+				<section>
 					<h2>Data Plane Development Kit</h2>
 					<h3>CS694: Seminar Presentation</h3>
 					<p>
@@ -61,7 +67,7 @@
 				<script src='plugin/anime/anime.js'></script>
 					
 				</section> 
-				<section>Linux Network Stack
+				<section>Linux Network Stack:Notes
 					<div class = "kerneldemo">
 						<div class="userspace">
 								<span class="application1">A1</span>
@@ -139,9 +145,15 @@
 
 						</script>
 						</div>
+						<aside class="notes">
+							<ol>
+								<li> color change represents a memory copy.</li>
+								<li>header is processed in the kernel. So it is disappearing</li>
+								</ol>
+						</aside>
 				</section>		
 					
-		<section>Alternatives
+		<section>Alternatives:refresh and notes
 			
 			<div class= "kerneldemo">
 				<div id="chart_div" style="width: 900px; height: 500px;"></div>
@@ -163,6 +175,7 @@
 				</div>
 			</div>
 			<aside class="notes">
+				25x: on small packets 64 bytes.
 				IB: infiniband and HPC
 			</aside>
 			<script>
@@ -207,6 +220,20 @@
 			</script>
 			
 		</section>
+		<section>Animation for DPDK
+			
+		</section>
+		<section>Pipeline model Animation
+			<p>Limitation:cache bouncing</p>
+			<p>Unnecessary communication overhead</p>
+		</section>
+		<section><h4> PMD driver</h4>
+			<p>Support for ixgbe and virtio drivers</p>
+			<p>Kernel subsystems: vfio and uio</p>
+			<p>One(single) and burst mode available </p>
+			<p>Interrupts disabled (Exception: Link status change</p>
+			<p>Hardware offloading feature: checksumming, VLAN insertion,  segmentation, setting of bit in mbuf metadata</p>
+		</section>
 				<section>
 				<h4>DPDK:Core </h4>
 				<div id="container">
@@ -246,7 +273,9 @@
 				<img src="svgs/object_cache.svg" style="width:800px;height:500px;border:none">
 			</img>
 			</div>
-				
+			<aside class="notes">
+				cache line bouncing during cache operation.
+			</aside>
 		</section>
 		<section> mbuf
 			<div class ="kerneldemo">
@@ -265,7 +294,7 @@
 		<section><h4>Ring</h4>
 			Lockless design is the norm in Linux. DPDK has not modified it according to the documentation. I think it is unnecessary to go into its design here.
 		</section>
-		<section><h4>Timer:may see Notes</h4>
+		<section><h4>Timer:Notes</h4>
 		<div>
 			<ul>
 				<li>No kernel for keeping time.</li>
@@ -280,7 +309,13 @@
 		Multiple timers are implemented in DPDK using a skip list and timers are fired after their timeout. One shot versus periodic.
 			</aside>
 		</section>
-		<section> Cuckoo Hashing
+		<section> Libraries for Application Layer
+		<ol>
+			<li>Hash Library: Cuckoo Hashing</li>
+			<li>Membership Library: Bloom Filters and Hash table based</li>
+			
+		</ol></section>
+		<section> Cuckoo Hashing:Notes
 			<div class="kerneldemo">
 				<table class ="table1">
 					<tbody>
@@ -375,9 +410,15 @@
 				</aside>
 		</section>
 		<section><h4>Cuckoo and DPDK: Failed insertions</h4>
-
-
+			<ol>
+				<li>Rehashing is costly. Possible alternatives: increase table size , use a stash.</li>
+				<li>DPDK uses a stash. After certain rounds of eviction, the element is kept in a stash which is a linked list.</li>
+				<li>Same animation as on previous slide. Linked list below to show a stash. </li>
+			</ol>
+			
 		</section>
+		<section></section>
+		
 		</div>
 	</div>
 		<script src="js/reveal.js"></script>
