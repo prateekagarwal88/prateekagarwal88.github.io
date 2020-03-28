@@ -207,106 +207,7 @@
 			</script>
 			
 		</section>
-				<section> Cuckoo Hashing
-				<div class="kerneldemo">
-					<table class ="table1">
-						<tbody>
-						<tr><td>   </td></tr>
-						<tr><td>  </td></tr>
-						<tr><td>  </td></tr>
-						<tr><td>  </td></tr>
-						</tbody>
-					</table>
-					<table class ="table2">
-						<tbody>
-						<tr><td>  </td></tr>
-						<tr><td> </td></tr>
-						<tr><td>   </td></tr>
-						<tr><td>  </td></tr>
-						</tbody>
-						</table>
-					
-					<p style="position:relative;top:-40%;left:-20%;font-size:20px">H1(x)</p>
-					<p style="position:relative;top:-50%;left:20%;font-size:20px">H2(x)</p>
-					<div id="text1" style="position:relative;top:-600px;left:-20%;font-size:20px;color:black;display:none;">N</div>
-					<div  id="Aarr" class= "arrow">
-					</div>
-					<div id="text2" style="position:relative;top:-700px;left:-20%;font-size:20px;color:black;display:none;">N</div>
-					<div  id="Barr" class= "arrow">
-					</div>
-					<div  id="Carr" class= "arrow">
-					</div>
-					<div  id="text3" style="position:relative;top:-1560px;left:20%;font-size:20px ;color:blue;display:none;">A</div>
-					<div  id="Darr" class= "arrow">
-					</div>
-					<div  id="text4" style="position:relative;top:-1800px;left:20%;font-size:20px ;color:orange;display:none;">B</div>
-
-	
-				</div>
-				<button id="playcuckoo">
-					Insert
-				</button>
-				<script>
-					document.getElementById("playcuckoo").onclick = function() {myFunction1()};
-					var count = 0;
-					function myFunction1() {
-						count= count+1;
-						if (count == 1){
-							document.getElementById("text1").style.display = "block";
-							document.getElementById("text1").innerHTML = "A";
-							document.getElementById("text1").style.color = "blue";
-							document.getElementById("Aarr").style.display = "block";
-							// document.getElementById("arrow2").style.color= "blue";
-							return;
-					 		//  document.getElementById("arrow2").style.display = "block";
-							
-						}
-						if (count == 2){
-							document.getElementById("text2").style.display = "block";
-							document.getElementById("text2").innerHTML = "B";
-							document.getElementById("text2").style.color = "orange";
-							document.getElementById("Barr").style.display = "block";
-							// document.getElementById("arrow2").style.color= "blue";
-							return;
-					 		//  document.getElementById("arrow2").style.display = "block";
-							
-						}
-						if (count == 3){
-							document.getElementById("text1").style.display = "block";
-							document.getElementById("text1").innerHTML = "C";
-							document.getElementById("text1").style.color = "green";
-							document.getElementById("Carr").style.display = "block";
-							document.getElementById("text3").style.display = "block";
-
-							// document.getElementById("arrow2").style.color= "blue";
-							return;
-						}
-						if (count == 4){
-							document.getElementById("text2").innerHTML = "D";
-							document.getElementById("text2").style.color = "violet";
-							document.getElementById("text4").style.display = "block";
-							document.getElementById("Darr").style.display = "block";
-							return;
-							
-						}
-						if (count>4){
-							count = 0;
-							document.getElementById("text1").style.display = "none";
-							document.getElementById("text2").style.display = "none";
-							document.getElementById("text3").style.display = "none";
-							document.getElementById("text4").style.display = "none";
-							document.getElementById("Aarr").style.display = "none";
-							document.getElementById("Barr").style.display = "none";
-							document.getElementById("Carr").style.display = "none";
-							document.getElementById("Darr").style.display = "none";
-
-						}
-					
-					}
-					</script>
-					
-			</section>
-			<section>
+				<section>
 				<h4>DPDK:Core </h4>
 				<div id="container">
 			  <div id="no1"><a href="">Core Functions</a></div>
@@ -352,13 +253,133 @@
 				<img src="svgs/mbuf2.svg" style="width:800px;height:500px;border:none">
 			</img>
 			</div>
+			<aside class="notes">
+				mbuf metadata header contains next pointer, starting address of payload, offset to account for head room, payload length length
+			</aside>
 		</section>
-		<section> mbuf
-
+		<section> mbuf:multisegment
+			<img src="svgs/mbuf3.svg" style="width:800px;height:500px;border:none">
+			</img>
 		</section>
+			
+		<section><h4>Ring</h4>
+			Lockless design is the norm in Linux. DPDK has not modified it according to the documentation. I think it is unnecessary to go into its design here.
+		</section>
+		<section><h4>Timer:may see Notes</h4>
+		<div>
+			<ul>
+				<li>No kernel for keeping time.</li>
+				<li> HPET and TSC</li>
+				<li> One shot and periodic software timers</li>
+				
+			</ul>
 			</div>
-		</div>
+			<aside class="notes">
+				Hardware timers .HPET and TSC both options available. HPET gives high resolution and high overhead in case of multi core architecture.
+		TSC is 64-bit time stamp counter register in x86 architecture which can be read by RTSC instruction. It has low resolution and low overhead.
+		Multiple timers are implemented in DPDK using a skip list and timers are fired after their timeout. One shot versus periodic.
+			</aside>
+		</section>
+		<section> Cuckoo Hashing
+			<div class="kerneldemo">
+				<table class ="table1">
+					<tbody>
+					<tr><td>   </td></tr>
+					<tr><td>  </td></tr>
+					<tr><td>  </td></tr>
+					<tr><td>  </td></tr>
+					</tbody>
+				</table>
+				<table class ="table2">
+					<tbody>
+					<tr><td>  </td></tr>
+					<tr><td> </td></tr>
+					<tr><td>   </td></tr>
+					<tr><td>  </td></tr>
+					</tbody>
+					</table>
+				<p style="position:relative;top:-40%;left:-20%;font-size:20px">H1(x)</p>
+				<p style="position:relative;top:-50%;left:20%;font-size:20px">H2(x)</p>
+				<div id="text1" style="position:relative;top:-600px;left:-20%;font-size:20px;color:black;display:none;">N</div>
+				<div  id="Aarr" class= "arrow">
+				</div>
+				<div id="text2" style="position:relative;top:-700px;left:-20%;font-size:20px;color:black;display:none;">N</div>
+				<div  id="Barr" class= "arrow">
+				</div>
+				<div  id="Carr" class= "arrow">
+				</div>
+				<div  id="text3" style="position:relative;top:-1560px;left:20%;font-size:20px ;color:blue;display:none;">A</div>
+				<div  id="Darr" class= "arrow">
+				</div>
+				<div  id="text4" style="position:relative;top:-1800px;left:20%;font-size:20px ;color:orange;display:none;">B</div>
+			</div>
+			<button id="playcuckoo">
+				Insert
+			</button>
+			<script>
+				document.getElementById("playcuckoo").onclick = function() {myFunction1()};
+				var count = 0;
+				function myFunction1() {
+					count= count+1;
+					if (count == 1){
+						document.getElementById("text1").style.display = "block";
+						document.getElementById("text1").innerHTML = "A";
+						document.getElementById("text1").style.color = "blue";
+						document.getElementById("Aarr").style.display = "block";
+						return;
+					}
+					if (count == 2){
+						document.getElementById("text2").style.display = "block";
+						document.getElementById("text2").innerHTML = "B";
+						document.getElementById("text2").style.color = "orange";
+						document.getElementById("Barr").style.display = "block";
+						return;
+						
+					}
+					if (count == 3){
+						document.getElementById("text1").style.display = "block";
+						document.getElementById("text1").innerHTML = "C";
+						document.getElementById("text1").style.color = "green";
+						document.getElementById("Carr").style.display = "block";
+						document.getElementById("text3").style.display = "block";
+						return;
+					}
+					if (count == 4){
+						document.getElementById("text2").innerHTML = "D";
+						document.getElementById("text2").style.color = "violet";
+						document.getElementById("text4").style.display = "block";
+						document.getElementById("Darr").style.display = "block";
+						return;
+					}
+					if (count>4){
+						count = 0;
+						document.getElementById("text1").style.display = "none";
+						document.getElementById("text2").style.display = "none";
+						document.getElementById("text3").style.display = "none";
+						document.getElementById("text4").style.display = "none";
+						document.getElementById("Aarr").style.display = "none";
+						document.getElementById("Barr").style.display = "none";
+						document.getElementById("Carr").style.display = "none";
+						document.getElementById("Darr").style.display = "none";
+					}
+				
+				}
+				</script>
+				<aside class="notes">
+					<ul>
+						<li> node:element and edge:connects two possible locations</li>
+						<li> Constant time lookup/deletion</li>
+						<li>constant amortized cost</li> 
+						<li>Rehasing in case of failed insertion(element with same edge property)</li>
+					</ul>
+				</aside>
+		</section>
+		<section><h4>Cuckoo and DPDK: Failed insertions</h4>
 
+
+		</section>
+		</div>
+	</div>
 		<script src="js/reveal.js"></script>
 
 		<script>
