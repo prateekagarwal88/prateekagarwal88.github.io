@@ -8,11 +8,24 @@
   background-color: currentColor;
   font-size: 14px;
 } */
+.images{
+        max-width: 100%;
+        max-height: 100%;
+        display: block; /* remove extra space below image */
+    }
+.figurebox{
+  width : 900px;
+  height: 512px;
+  z-index:-1;
+  /* border-radius: 10%; */
+  /* background-color:#252525; */
+/* font-size: 20px; */
+}
 .kerneldemo{
   width : 900px;
   height: 512px;
   z-index:-1;
-  border-radius: 10%;
+  /* border-radius: 10%; */
   /* background-color:#252525; */
 /* font-size: 20px; */
 }
@@ -105,17 +118,17 @@
   background-color:#50101A;
   z-index : 10;
 
-} 
+}
 
- 
-img{
+
+/* img{
   left: 100px;
  width: 50px;
  height:50 px;
  border:none;
 /* border-color: white; */
 object-fit: cover;
-}
+} */
 
 #trad{
   display:none;
@@ -205,9 +218,9 @@ height:60%;
     top: -1300px;
     z-index:100;
     display:none;
-    transform:rotate(-58deg); 
+    transform:rotate(-58deg);
     /* display: none; */
-  
+
     background-color:green;
   }
   #Aarr{
@@ -217,7 +230,7 @@ height:60%;
     height:300px;
     top:-740px;
     z-index:100;
-    transform:rotate(-90deg); 
+    transform:rotate(-90deg);
     background-color:blue;
   }
   #Barr{
@@ -227,7 +240,7 @@ height:60%;
     height:300px;
     top: -900px;
     transform:rotate(70deg);
-    background-color:orange; 
+    background-color:orange;
 }
   #Darr{
     display: none;
@@ -235,7 +248,7 @@ height:60%;
     left:450px;
     height:340px;
     top: -1660px;
-    transform:rotate(43deg); 
+    transform:rotate(43deg);
     background-color: violet;
   }
   #playcuckoo{
@@ -251,19 +264,19 @@ height:60%;
     /* z-index:1000; */
   }
   h1 {
-    width:580px; 
+    width:580px;
     font-family:verdana,arial,helvetica,sans-serif;
     font-size:18px;
     text-align:center;
     margin:40px auto;
  }
 #container {
-    width:580px; 
+    width:580px;
     font-family:verdana,arial,helvetica,sans-serif;
     font-size:11px;
     text-align:center;
     margin:auto;
- }  
+ }
 #container a {
     display:block;
     color:#000;
@@ -291,15 +304,15 @@ height:60%;
     color:#fff;
     background-color:#000;
     margin:auto;
- } 
+ }
 #line2 {
     font-size:0;
     width:420px;
     height:1px;
     color:#fff;
-    background-color:#000;    
+    background-color:#000;
     margin:auto;
- } 
+ }
 #line3 {
     font-size:0;
     display:inline;
@@ -309,7 +322,7 @@ height:60%;
     background-color:#000;
     margin-left:78px;
     float:left;
- }  
+ }
 #line6 {
   position:relative;
   left:280px;
@@ -330,10 +343,10 @@ height:60%;
     float:left;
  }
 #no2 a  {
-    width:84px; 
+    width:84px;
     height:50px;
-    padding-top:12px; 
- }  
+    padding-top:12px;
+ }
 #no3 {
   position:relative;
     display:block;
@@ -343,22 +356,22 @@ height:60%;
     float:left;
  }
 #no3 a,#no5 a,#no6 a,#no7 a,#no9 a {
-    width:84px; 
+    width:84px;
     height:50px;
-    padding-top:12px;  
- } 
+    padding-top:12px;
+ }
 #no4 {
-    display:inline;  
+    display:inline;
     border:1px solid #000;
     margin-left:53px;
     float:left;
- }  
+ }
 #no5 {
-    display:inline;   
+    display:inline;
     border:1px solid #000;
     margin-left:55px;
     float:left;
- }  
+ }
 #line7,#line13 {
     font-size:0;
     display:inline;
@@ -368,7 +381,7 @@ height:60%;
     background-color:#000;
     margin-left:219px;
     float:left;
- } 
+ }
 #line8,#line14 {
     font-size:0;
     display:inline;
@@ -378,9 +391,9 @@ height:60%;
     background-color:#000;
     margin-left:281px;
     float:left;
- }  
+ }
 #no6,#no8 {
-    display:inline;  
+    display:inline;
     border:1px solid #000;
     margin-left:107px;
     float:left;
@@ -391,10 +404,10 @@ height:60%;
     width:26px;
     height:1px;
     color:#fff;
-    background-color:#000;    
+    background-color:#000;
     margin-top:29px;
     float:left;
- }  
+ }
 #line10,#line12,#line16,#line18 {
     font-size:0;
     display:inline;
@@ -403,19 +416,19 @@ height:60%;
     color:#fff;
     background-color:#000;
     float:left;
- } 
+ }
 #line16,#line18 {
     height:30px;
  }
 #no7,#no9 {
-    display:inline; 
+    display:inline;
     border:1px solid #000;
     margin-left:169px;
     float:left;
- } 
+ }
 .clear {
     clear:both;
- }                  
+ }
  #memline1 {
  position:relative;
   left:-320px;
@@ -495,10 +508,10 @@ height:60%;
           float:left;
        }
       #mbuf a  {
-          width:84px; 
+          width:84px;
           height:50px;
-          padding-top:12px; 
-       }  
+          padding-top:12px;
+       }
        #ring {
         position:relative;
         display:block;
@@ -510,7 +523,7 @@ height:60%;
         float:left;
       }
       #ring a{
-          width:84px; 
+          width:84px;
           height:50px;
-          padding-top:12px; 
-      }  
+          padding-top:12px;
+      }

@@ -50,100 +50,45 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<!-- <section>
-					<p>There are notes on some presentations. You may view them by pressing S on keyboard.</p>
-					<p>Alternatives slide, you may have to reload the graph. I used google charts. should have used some other framework. Will change if required
-						Kindly click anywhere on the graph to get the labels( 5 times)
-					</p> -->
-				<!-- </section> -->
+
 				<section>
 					<h2>Data Plane Development Kit</h2>
-					<h3>CS694: Seminar Presentation</h3>
+					<h3>A Packet Accelerator Framework</h3>
 					<p>
 						<small>Prateek Agarwal</small>
 					</p>
 				</section>
 				 <section>Motivation
-				<script src='plugin/anime/anime.js'></script>
-					
-				</section> 
-				<section>Linux Network Stack:Notes
-					<div class = "kerneldemo">
-						<div class="userspace">
-								<span class="application1">A1</span>
-								<span class="application1">A2</span>
-								<span class="application1">A3</span>
-								<p style="position:relative;top:-30px;"> <span class="labels">User</span></p>
-						</div>
-						<div class="kernelspace">
-						<p class = "kk"></p>
-						<p><span class="labels">Kernel</span> </p>
-						</div>
-						<div class = "NIC">NIC</div>
-						<div class= "packet">
-							<div class="payload"></div>
-							<div class="header1"></div>
-						</div>
-						<script src='plugin/anime/anime.js'></script>
-						<script>
-							var t1 = anime.timeline({
-								easing:'linear',
-								loop:true
-							});
-							t1.add({
-								targets:['.payload', '.header1'],
-								keyframes: [
-							{translateX: 200, duration: 1000, easing:'linear'}
-							]
-							});
-							t1.add({
-								targets:'.header1',
-								translateY:-50,
-								background:'#FF0000',
-								easing: 'linear',
-								
-							},1000);
-							t1.add({
-								targets:'.payload',
-								translateY:-50,
-								background:'#00FF00',
-								easing: 'linear',
-								
-							},1000);
-							t1.add({
-								// moving to user
-								targets:'.payload',
-								translateY:-250,
-								// background:'#0000FF',
-								easing: 'linear',
-								
-							},2000);
-							t1.add({
-								// moving to user
-								targets:'.header1',
-								translateY:-250,
-								easing: 'linear',
-								background:'#ACCDA3',
-							},2000);
-							t1.add({
-								// moving to user
-								
-								targets:'.payload',
-								translateY:{value:'-=50'},
-								background:'#0000FF',
-								easing: 'linear',
-								
-							});
-							t1.add({
-								targets:'.payload',
-								translateY:{value:'-=50'},
-								translateX:{value:'-=25'},
-								// background:'#FFFFFF',
-								easing: 'linear',
-								
-							});
+				<!-- <script src='plugin/anime/anime.js'></script> -->
 
-						</script>
+				</section>
+
+
+
+				<section>
+					<div class= "figurebox">
+							<img class = "images" src="figs/packets.png" style="width:800px;height:500px;border:none">
+						</img>
+					</div>
+				</section>
+
+								<section><h4>Fast Path Operations</h4>
+									<div class= "figurebox">
+											<img class = "images" src="figs/c1f1.png" style="width:800px;height:500px;border:none">
+										</img>
+									</div>
+								</section>
+
+				<section>
+					<h4> Link Rate vs. Processing Speed</h4>
+					<div class= "figurebox">
+<iframe src="https://giphy.com/embed/l0HlUIl8snxmgscE0" width="600" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+					</div>
+				</section>
+				<section>Linux Network Stack
+						<div class= "figurebox">
+								<img src="figs/c1f2.png" width= "80%" height = "100%">
+							</img>
 						</div>
 						<aside class="notes">
 							<ol>
@@ -151,39 +96,36 @@
 								<li>header is processed in the kernel. So it is disappearing</li>
 								</ol>
 						</aside>
-				</section>		
-					
-		<section>Alternatives:refresh and notes
-			
+				</section>
+				<section><h2> Limitations </h2>
+					<section> <h2> Interrupt</h2>
+
+
+
+					</section>
+
+
+
+
+				</section>
+
+
+
+		<section>Alternatives
+
 			<div class= "kerneldemo">
-				<div id="chart_div" style="width: 900px; height: 500px;"></div>
-				<div id = "trad">
-					Linux
-				</div>
-				<div id = "sph">
-					Special Purpose Hardware(IB)
-				</div>
-				
-				<div id="napi">
-					NAPI(Polling)
-				</div>
-				<div id="dpdk">
-					DPDK
-				</div>
-				<div id="twofivex">
-					25X faster 
-				</div>
+
 			</div>
 			<aside class="notes">
-				25x: on small packets 64 bytes.
-				IB: infiniband and HPC
+				<!-- 25x: on small packets 64 bytes.
+				IB: infiniband and HPC -->
 			</aside>
 			<script>
 				document.getElementById("chart_div").onclick = function() {myFunction()};
 				var count = 0;
 				function myFunction() {
 					count= count+1;
-					
+
 					if(count==1){
 						document.getElementById("trad").style.display = "block";
 
@@ -218,10 +160,10 @@
 
 					}
 			</script>
-			
+
 		</section>
 		<section>Animation for DPDK
-			
+
 		</section>
 		<section>Pipeline model Animation
 			<p>Limitation:cache bouncing</p>
@@ -240,8 +182,8 @@
 			  <div id="no1"><a href="">Core Functions</a></div>
 			  <div id="line1"></div>
 				<div id="line2"></div>
-				<div id="line3"></div> 
-			   <div id="line6"></div> 
+				<div id="line3"></div>
+			   <div id="line6"></div>
 			   <div id="no2"><a href="#">mempool</a></div>
 			   <div id="no3"><a href="#">timer</a></div>
 				<div id="memline1"></div>
@@ -250,23 +192,23 @@
 				<div id="memline4"></div>
 				<div id="memline5"></div>
 				<div id="mbuf"><a href="#">mbuf</a></div>
-				<div id="ring"><a href="#">Ring</a></div>  
+				<div id="ring"><a href="#">Ring</a></div>
 			</div>
-			</section>		
-	
+			</section>
+
 		<section>mempool: ring
 			<div class ="kerneldemo">
 				<img src="svgs/ring.svg" style="width:800px;height:500px;border:none">
 			</img>
 			</div>
-				
+
 		</section>
 		<section> mempool: mbuf
 			<div class ="kerneldemo">
 				<img src="svgs/mbufring.svg" style="width:800px;height:500px;border:none">
 			</img>
 			</div>
-				
+
 		</section>
 		<section>mempool: local cache
 			<div class ="kerneldemo">
@@ -290,7 +232,7 @@
 			<img src="svgs/mbuf3.svg" style="width:800px;height:500px;border:none">
 			</img>
 		</section>
-			
+
 		<section><h4>Ring</h4>
 			Lockless design is the norm in Linux. DPDK has not modified it according to the documentation. I think it is unnecessary to go into its design here.
 		</section>
@@ -300,7 +242,7 @@
 				<li>No kernel for keeping time.</li>
 				<li> HPET and TSC</li>
 				<li> One shot and periodic software timers</li>
-				
+
 			</ul>
 			</div>
 			<aside class="notes">
@@ -313,7 +255,7 @@
 		<ol>
 			<li>Hash Library: Cuckoo Hashing</li>
 			<li>Membership Library: Bloom Filters and Hash table based</li>
-			
+
 		</ol></section>
 		<section> Cuckoo Hashing:Notes
 			<div class="kerneldemo">
@@ -369,7 +311,7 @@
 						document.getElementById("text2").style.color = "orange";
 						document.getElementById("Barr").style.display = "block";
 						return;
-						
+
 					}
 					if (count == 3){
 						document.getElementById("text1").style.display = "block";
@@ -397,14 +339,14 @@
 						document.getElementById("Carr").style.display = "none";
 						document.getElementById("Darr").style.display = "none";
 					}
-				
+
 				}
 				</script>
 				<aside class="notes">
 					<ul>
 						<li> node:element and edge:connects two possible locations</li>
 						<li> Constant time lookup/deletion</li>
-						<li>constant amortized cost</li> 
+						<li>constant amortized cost</li>
 						<li>Rehasing in case of failed insertion(element with same edge property)</li>
 					</ul>
 				</aside>
@@ -415,10 +357,10 @@
 				<li>DPDK uses a stash. After certain rounds of eviction, the element is kept in a stash which is a linked list.</li>
 				<li>Same animation as on previous slide. Linked list below to show a stash. </li>
 			</ol>
-			
+
 		</section>
 		<section></section>
-		
+
 		</div>
 	</div>
 		<script src="js/reveal.js"></script>
@@ -435,7 +377,7 @@
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/highlight/highlight.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					
+
 				]
 			});
 		</script>
@@ -476,3 +418,98 @@
     <div id="chart_div" style="width: 900px; height: 500px;"></div>
   </body>
 </html> -->
+<!-- <div class = "kerneldemo">
+	<div class="userspace">
+			<span class="application1">A1</span>
+			<span class="application1">A2</span>
+			<span class="application1">A3</span>
+			<p style="position:relative;top:-30px;"> <span class="labels">User</span></p>
+	</div>
+	<div class="kernelspace">
+	<p class = "kk"></p>
+	<p><span class="labels">Kernel</span> </p>
+	</div>
+	<div class = "NIC">NIC</div>
+	<div class= "packet">
+		<div class="payload"></div>
+		<div class="header1"></div>
+	</div> -->
+	<!-- <script src='plugin/anime/anime.js'></script>
+	<script>
+		var t1 = anime.timeline({
+			easing:'linear',
+			loop:true
+		});
+		t1.add({
+			targets:['.payload', '.header1'],
+			keyframes: [
+		{translateX: 200, duration: 1000, easing:'linear'}
+		]
+		});
+		t1.add({
+			targets:'.header1',
+			translateY:-50,
+			background:'#FF0000',
+			easing: 'linear',
+
+		},1000);
+		t1.add({
+			targets:'.payload',
+			translateY:-50,
+			background:'#00FF00',
+			easing: 'linear',
+
+		},1000);
+		t1.add({
+			// moving to user
+			targets:'.payload',
+			translateY:-250,
+			// background:'#0000FF',
+			easing: 'linear',
+
+		},2000);
+		t1.add({
+			// moving to user
+			targets:'.header1',
+			translateY:-250,
+			easing: 'linear',
+			background:'#ACCDA3',
+		},2000);
+		t1.add({
+			// moving to user
+
+			targets:'.payload',
+			translateY:{value:'-=50'},
+			background:'#0000FF',
+			easing: 'linear',
+
+		});
+		t1.add({
+			targets:'.payload',
+			translateY:{value:'-=50'},
+			translateX:{value:'-=25'},
+			// background:'#FFFFFF',
+			easing: 'linear',
+
+		});
+
+	</script> -->
+	<!-- </div> -->
+	<!-- <div id="chart_div" style="width: 900px; height: 500px;"></div>
+	<div id = "trad">
+		Linux
+	</div>
+	<div id = "sph">
+		Special Purpose Hardware(IB)
+	</div>
+
+	<div id="napi">
+		NAPI(Polling)
+	</div>
+	<div id="dpdk">
+		DPDK
+	</div>
+	<div id="twofivex">
+		25X faster
+	</div> -->
+<!-- <p><a href="https://giphy.com/gifs/cute-run-cutest-gif-ever-l0HlUIl8snxmgscE0"> -->
