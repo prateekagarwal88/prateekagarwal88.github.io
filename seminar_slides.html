@@ -195,6 +195,7 @@
 			</div>
 		</section>
 <!-- core libraries descripton here  -->
+<section>
 <section>Mempool Library
 	<div class="figurebox">
 			<img src="figs/ring.svg" width= "90%" height = "70%" style="border:none">
@@ -207,12 +208,14 @@
 		</img>
 	</div>
 </section>
-<section>Mempool Library: mbuf
+<!-- <section>Mempool Library: mbuf
 	<div class="figurebox">
 			<img src="figs/mempoolrec.svg" width= "90%" height = "70%" style="border:none">
 		</img>
 	</div>
+</section> -->
 </section>
+<section>
 <section>mbuf structure
 	<div class="figurebox">
 			<img src="figs/c4f2.png" width= "90%" height = "70%" style="border:none">
@@ -233,11 +236,12 @@
 	<li><strong>Payload</strong> - Encapsulated Raw Packet</li>
 </ul>
 </p>
-
 </section>
-<section><h4>Lockless Rings</h4>
-	<p>Handle Concurrent Requests	</p>
-	<p> Uses CAS instructions</p>
+</section>
+<section>
+	<section>Ring Library</section>
+<section><p>Lockless Rings (using CAS)</p></section>
+<section><p>Handle Concurrent Requests	</p></section>
 </section>
 <section><h4>CAS Review</h4>
 	<div class="figurebox">
@@ -245,7 +249,8 @@
 		</img>
 	</div>
 </section>
-<section><h4>Dequeue</h4>
+<section>
+<section><h4>Dequeue: Flowchart</h4>
 	<div class="figurebox">
 			<img src="figs/dequeuedemo.png" width= "60%"  style="border:none">
 		</img>
@@ -267,114 +272,81 @@
 		</img>
 	</div>
 </section>
+</section>
+<section>
+
 <section> Multi-Producer Enqueue - Flowchart
 <div class="figurebox">
 		<img src="figs/flowmulti.png" width= "60%"  style="border:none">
 	</img>
 </div>
 </section>
+<section><h4>Enqueue: 1</h4>
+	<div class="figurebox">
+			<img src="figs/demo1.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section>
+<section><h4>Enqueue: 2</h4>
+	<div class="figurebox">
+			<img src="figs/demo2.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section>
+<section><h4>Enqueue: 3</h4>
+	<div class="figurebox">
+			<img src="figs/demo3.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section>
+<section><h4>Enqueue: 4</h4>
+	<div class="figurebox">
+			<img src="figs/demo4.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section>
+<section><h4>Enqueue: 5</h4>
+	<div class="figurebox">
+			<img src="figs/demo5.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+
+</section>
+</section>
+<section>
+	<section>Memory Management Features</section>
+<section> <p>Huge Pages</p>
+<ol>
+<li>Fewer TLB misses</li>
+<li>Enables pinned memory.</li>
+</ol>
+</section>
+<section>NUMA aware Allocation</section>
+<section> Dynamic Memory Management</section>
+</section>
+
 		<section><h4>DPDK: Application</h4>
 			<div class="figurebox">
-					<img src="figs/c2f1.png" width= "70%" height = "90%" style="border:none">
+					<img src="figs/c2f2.png" width= "70%" style="position:relative;border:none;top:50px;">
 				</img>
 			</div>
 		</section>
 
+<section>
+<section>Hash Library</section>
+<section> <h2>Use Case : Flow Classification</h2>
+		<p>Redirect traffic based on 5-tuple - (source IP, source port, destination IP, destination port)</p>
+</section>
+<section><h2>ADT operations</h2>
+<p>Search, Insert and Delete</p>
 
+</section>
+<section>
+Uses Cuckoo Hashing Technique
+</section>
+</section>
 
-		<section>Pipeline model Animation
-			<p>Limitation:cache bouncing</p>
-			<p>Unnecessary communication overhead</p>
-		</section>
-		<section><h4> PMD driver</h4>
-			<p>Support for ixgbe and virtio drivers</p>
-			<p>Kernel subsystems: vfio and uio</p>
-			<p>One(single) and burst mode available </p>
-			<p>Interrupts disabled (Exception: Link status change)</p>
-			<p>Hardware offloading feature: checksumming, VLAN insertion,  segmentation, setting of bit in mbuf metadata</p>
-		</section>
-				<section>
-				<h4>DPDK:Core </h4>
-				<div id="container">
-			  <div id="no1"><a href="">Core Functions</a></div>
-			  <div id="line1"></div>
-				<div id="line2"></div>
-				<div id="line3"></div>
-			   <div id="line6"></div>
-			   <div id="no2"><a href="#">mempool</a></div>
-			   <div id="no3"><a href="#">timer</a></div>
-				<div id="memline1"></div>
-				<div id="memline2"></div>
-				<div id="memline3"></div>
-				<div id="memline4"></div>
-				<div id="memline5"></div>
-				<div id="mbuf"><a href="#">mbuf</a></div>
-				<div id="ring"><a href="#">Ring</a></div>
-			</div>
-			</section>
-
-		<section>mempool: ring
-			<div class ="kerneldemo">
-				<img src="svgs/ring.svg" style="width:800px;height:500px;border:none">
-			</img>
-			</div>
-
-		</section>
-		<section> mempool: mbuf
-			<div class ="kerneldemo">
-				<img src="svgs/mbufring.svg" style="width:800px;height:500px;border:none">
-			</img>
-			</div>
-
-		</section>
-		<section>mempool: local cache
-			<div class ="kerneldemo">
-				<img src="svgs/object_cache.svg" style="width:800px;height:500px;border:none">
-			</img>
-			</div>
-			<aside class="notes">
-				cache line bouncing during cache operation.
-			</aside>
-		</section>
-		<section> mbuf
-			<div class ="kerneldemo">
-				<img src="svgs/mbuf2.svg" style="width:800px;height:500px;border:none">
-			</img>
-			</div>
-			<aside class="notes">
-				mbuf metadata header contains next pointer, starting address of payload, offset to account for head room, payload length length
-			</aside>
-		</section>
-		<section> mbuf:multisegment
-			<img src="svgs/mbuf3.svg" style="width:800px;height:500px;border:none">
-			</img>
-		</section>
-
-		<section><h4>Ring</h4>
-			Lockless design is the norm in Linux. DPDK has not modified it according to the documentation. I think it is unnecessary to go into its design here.
-		</section>
-		<section><h4>Timer:Notes</h4>
-		<div>
-			<ul>
-				<li>No kernel for keeping time.</li>
-				<li> HPET and TSC</li>
-				<li> One shot and periodic software timers</li>
-
-			</ul>
-			</div>
-			<aside class="notes">
-				Hardware timers .HPET and TSC both options available. HPET gives high resolution and high overhead in case of multi core architecture.
-		TSC is 64-bit time stamp counter register in x86 architecture which can be read by RTSC instruction. It has low resolution and low overhead.
-		Multiple timers are implemented in DPDK using a skip list and timers are fired after their timeout. One shot versus periodic.
-			</aside>
-		</section>
-		<section> Libraries for Application Layer
-		<ol>
-			<li>Hash Library: Cuckoo Hashing</li>
-			<li>Membership Library: Bloom Filters and Hash table based</li>
-
-		</ol></section>
-		<section> Cuckoo Hashing:Notes
+		<section> Cuckoo Hashing
 			<div class="kerneldemo">
 				<table class ="table1">
 					<tbody>
@@ -468,16 +440,29 @@
 					</ul>
 				</aside>
 		</section>
-		<section><h4>Cuckoo and DPDK: Failed insertions</h4>
+		<section><h4>Cuckoo Hashing: Failed insertions</h4>
 			<ol>
-				<li>Rehashing is costly. Possible alternatives: increase table size , use a stash.</li>
-				<li>DPDK uses a stash. After certain rounds of eviction, the element is kept in a stash which is a linked list.</li>
-				<li>Same animation as on previous slide. Linked list below to show a stash. </li>
+				<li>Rehashing is <strong>expensive</strong>.</li>
+				<li>Use stash - Linked List</li>
 			</ol>
-
+			<div class="figurebox">
+					<img src="figs/c5f8.png" width= "70%" style="position:relative;border:none;top:50px;">
+				</img>
+			</div>
 		</section>
-		<section></section>
+		<section>
+			<section> Hash Library: Features</section>
+			<section>Precomputed Hash as Input</section>
+			<section> Batching</section>
+			<section><h4>Multithread Support</h4><p>Lock-Free :RCU mechanisms</p><p>Transactional Memory</p></section>
+		</section>
+<section>
+<h4>Membership Library</h4>
+<p>Is the element in the set?</p>
+<p>Space Efficient and Time efficient Algorithms</p>
+<p><strong>Tradeoff</strong>: False Positive Results</p>
 
+</section>
 		</div>
 	</div>
 		<script src="js/reveal.js"></script>
@@ -630,3 +615,92 @@
 		25X faster
 	</div> -->
 <!-- <p><a href="https://giphy.com/gifs/cute-run-cutest-gif-ever-l0HlUIl8snxmgscE0"> -->
+<!-- </section>
+		<section><h4> PMD driver</h4>
+			<p>Support for ixgbe and virtio drivers</p>
+			<p>Kernel subsystems: vfio and uio</p>
+			<p>One(single) and burst mode available </p>
+			<p>Interrupts disabled (Exception: Link status change)</p>
+			<p>Hardware offloading feature: checksumming, VLAN insertion,  segmentation, setting of bit in mbuf metadata</p>
+		</section> -->
+				<!-- <section>
+				<h4>DPDK:Core </h4>
+				<div id="container">
+			  <div id="no1"><a href="">Core Functions</a></div>
+			  <div id="line1"></div>
+				<div id="line2"></div>
+				<div id="line3"></div>
+			   <div id="line6"></div>
+			   <div id="no2"><a href="#">mempool</a></div>
+			   <div id="no3"><a href="#">timer</a></div>
+				<div id="memline1"></div>
+				<div id="memline2"></div>
+				<div id="memline3"></div>
+				<div id="memline4"></div>
+				<div id="memline5"></div>
+				<div id="mbuf"><a href="#">mbuf</a></div>
+				<div id="ring"><a href="#">Ring</a></div>
+			</div>
+			</section> -->
+<!--
+		<section>mempool: ring
+			<div class ="kerneldemo">
+				<img src="svgs/ring.svg" style="width:800px;height:500px;border:none">
+			</img>
+			</div>
+
+		</section> -->
+		<!-- <section> mempool: mbuf
+			<div class ="kerneldemo">
+				<img src="svgs/mbufring.svg" style="width:800px;height:500px;border:none">
+			</img>
+			</div>
+
+		</section> -->
+		<!-- <section>mempool: local cache
+			<div class ="kerneldemo">
+				<img src="svgs/object_cache.svg" style="width:800px;height:500px;border:none">
+			</img>
+			</div>
+			<aside class="notes">
+				cache line bouncing during cache operation.
+			</aside>
+		</section>
+		<section> mbuf
+			<div class ="kerneldemo">
+				<img src="svgs/mbuf2.svg" style="width:800px;height:500px;border:none">
+			</img>
+			</div>
+			<aside class="notes">
+				mbuf metadata header contains next pointer, starting address of payload, offset to account for head room, payload length length
+			</aside>
+		</section>
+		<section> mbuf:multisegment
+			<img src="svgs/mbuf3.svg" style="width:800px;height:500px;border:none">
+			</img>
+		</section> -->
+
+		<!-- <section><h4>Ring</h4>
+			Lockless design is the norm in Linux. DPDK has not modified it according to the documentation. I think it is unnecessary to go into its design here.
+		</section> -->
+		<!-- <section><h4>Timer:Notes</h4>
+		<div>
+			<ul>
+				<li>No kernel for keeping time.</li>
+				<li> HPET and TSC</li>
+				<li> One shot and periodic software timers</li>
+
+			</ul>
+			</div>
+			<aside class="notes">
+				Hardware timers .HPET and TSC both options available. HPET gives high resolution and high overhead in case of multi core architecture.
+		TSC is 64-bit time stamp counter register in x86 architecture which can be read by RTSC instruction. It has low resolution and low overhead.
+		Multiple timers are implemented in DPDK using a skip list and timers are fired after their timeout. One shot versus periodic.
+			</aside>
+		</section> -->
+		<!-- <section> Libraries for Application Layer
+		<ol>
+			<li>Hash Library: Cuckoo Hashing</li>
+			<li>Membership Library: Bloom Filters and Hash table based</li>
+
+		</ol></section> -->
