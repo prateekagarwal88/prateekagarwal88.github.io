@@ -134,7 +134,7 @@
 					</section>
 				</section>
 				<!-- <section> -->
-		<section><section><h4>Run-To-Completion vs. Pipeline</h4></section>
+		<section><h4>Run-To-Completion vs. Pipeline</h4>
 			<div class="figurebox">
 					<img src="figs/slide_moe.png" width= "100%" height = "70%" style="border:none">
 				</img>
@@ -201,11 +201,78 @@
 		</img>
 	</div>
 </section>
-
-
+<section>Mempool Library: Local Cache
+	<div class="figurebox">
+			<img src="figs/object_cache.svg" width= "90%" height = "70%" style="border:none">
+		</img>
+	</div>
+</section>
+<section>Mempool Library: mbuf
+	<div class="figurebox">
+			<img src="figs/mempoolrec.svg" width= "90%" height = "70%" style="border:none">
+		</img>
+	</div>
+</section>
+<section>mbuf structure
+	<div class="figurebox">
+			<img src="figs/c4f2.png" width= "90%" height = "70%" style="border:none">
+		</img>
+	</div>
+</section>
 <!-- </section> -->
+<section>multisegmented mbuf
+	<div class="figurebox">
+			<img src="figs/c4f3.png" width= "90%" height = "70%" style="border:none">
+		</img>
+	</div>
+</section>
+<section><h4> metadata and payload</h4>
+	<p>
+<ul>
+<li> <strong>Metadata</strong> - next ptr, payload length, flags for HW offload</li>
+	<li><strong>Payload</strong> - Encapsulated Raw Packet</li>
+</ul>
+</p>
 
-
+</section>
+<section><h4>Lockless Rings</h4>
+	<p>Handle Concurrent Requests	</p>
+	<p> Uses CAS instructions</p>
+</section>
+<section><h4>CAS Review</h4>
+	<div class="figurebox">
+			<img src="figs/c4f4.png" width= "100%"  style="border:none">
+		</img>
+	</div>
+</section>
+<section><h4>Dequeue</h4>
+	<div class="figurebox">
+			<img src="figs/dequeuedemo.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section>
+<section><h4>Dequeue: 1</h4>
+	<div class="figurebox">
+			<img src="figs/deq1.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section><section><h4>Dequeue: 2</h4>
+	<div class="figurebox">
+			<img src="figs/deq2.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section><section><h4>Dequeue: 3</h4>
+	<div class="figurebox">
+			<img src="figs/deq3.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section>
+<section> Multi-Producer Enqueue - Flowchart
+<div class="figurebox">
+		<img src="figs/flowmulti.png" width= "60%"  style="border:none">
+	</img>
+</div>
+</section>
 		<section><h4>DPDK: Application</h4>
 			<div class="figurebox">
 					<img src="figs/c2f1.png" width= "70%" height = "90%" style="border:none">
