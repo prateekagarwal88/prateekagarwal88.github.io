@@ -784,7 +784,7 @@ Cuckoo Hashing, DIR 24-8, Hardware transactional memory support, and other netwo
 ## References
 * Same as the <a href="https://prateekagarwal88.github.io/seminar_report.pdf" > seminar report.</a>
 
-
+<!-- `$$ J(\theta_0,\theta_1) = \sum_{i=0} $$` -->
 </textarea>
 </section>
 <section data-markdown>
@@ -813,12 +813,33 @@ Cuckoo Hashing, DIR 24-8, Hardware transactional memory support, and other netwo
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				hash: true,
+				math: {
+		mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+		config: 'TeX-AMS_HTML-full', // See http://docs.mathjax.org/en/latest/config-files.html
+		// pass other options into `MathJax.Hub.Config()`
+		TeX: { Macros: { RR: "{\\bf R}" } }
+	},
+	multiplex: {
+		// Example values. To generate your own, see the socket.io server instructions.
+		secret: null, // Obtained from the socket.io server. Gives this (the master) control of the presentation
+		id: '9042bd57f7a77a85', // Obtained from socket.io server
+		url: 'https://reveal-js-multiplex-ccjbegmaii.now.sh' // Location of socket.io server
+	},
+
 				dependencies: [
+
+
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/zoom-js/zoom.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/highlight/highlight.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true },
+					{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js', async: true },
+							{ src: 'plugin/multiplex/master.js', async: true },
+
+							// and if you want speaker notes
+							{ src: 'plugin/notes-server/client.js', async: true }
 
 				]
 			});
