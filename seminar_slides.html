@@ -602,12 +602,197 @@ Uses Cuckoo Hashing Technique
 </section>
 </section>
 
-<section>
-Transport Layer Development Kit
+<section data-markdown>
+	<textarea>
+##### *Transport Layer Development Kit*
+* L4 - TCP/UDP processing
+* Pull (not Push) .
 
+
+![TLDK](./figs/abcd.png)
+</textarea>
+
+</section>
+<section data-markdown>
+	<textarea>
+### Related Work and Comparisons
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea>
+		### Related Work and Comparisons
+
+<!-- # Related Work and Comparisons -->
+* Netslices
+* PF_RING
+* netmap
+
+* comparisons with DPDK
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea>### Netslices
+![Netslices](./figs/c8f1.png)
+<aside class="notes">
+Numa aware RAM is implicitly allocated.
+Cores are explicitly allocated.
+2 cores for one Rx-TX pair to manage the network rates.
+</aside>
+
+</textarea>
 </section>
 
 
+<section data-markdown>
+	<textarea>
+### Netslices: Features
+<!-- * Multiple memory copies -->
+* Packet Remains Local
+  * Fast access
+	<aside class="notes">
+	Packet remains local to the core. (warm cache )
+</aside>
+</textarea>
+</section>
+<section data-markdown>
+	<textarea>
+### Netslices: Features
+<!-- * Multiple memory copies -->
+* Packet Remains Local
+  * Fast access
+* Linear Scaling
+<aside class="notes">
+	Scales with the number of cores.
+
+</aside>
+</textarea>
+</section>
+<section data-markdown>
+
+<textarea>
+### Netslices: Drawbacks
+<!-- * Multiple memory copies -->
+* Multiple memory copies.
+<aside class="notes">
+	Kernel still plays a role. So copying occurs in kernel space as well.
+
+</aside>
+</textarea>
+</section>
+
+<section data-markdown>
+
+<textarea>
+### PF_RING
+* Raw Packet Capture Library
+* Polling - kernel and user space
+* Linear Scaling.
+
+
+![Netslices](./figs/c8f2slide.png)
+
+<aside class="notes">
+	Kernel still plays a role. So copying occurs in kernel space as well.
+
+</aside>
+</textarea>
+</section>
+<section data-markdown>
+
+<textarea>
+### PF_RING ZC (Zero Copy)
+* Direct NIC Access
+
+<aside class="notes">
+User space driver given direct access to NIC rings.
+
+</aside>
+</textarea>
+</section>
+<section data-markdown>
+<textarea>
+### netmap
+![netmap](./figs/c8f3slide.png)
+
+* ioctl, mmap, select, etc. system calls.
+* Netmap rings stores offsets in the shared memory region.
+
+<aside class="notes">
+
+</aside>
+</textarea>
+</section>
+<section data-markdown>
+<textarea>
+### netmap
+![netmap](./figs/c8f3slide.png)
+
+* Buffers in shared memory.
+* kernel system calls.
+
+<aside class="notes">
+	Preallocated Buffers , just like DPDK
+Netmap rings stores offsets in the shared memory region.
+ioctl, epoll, select ans other system calls.
+</aside>
+</textarea>
+</section>
+<section data-markdown>
+<textarea>
+### netmap : Advantages
+*  Zero-Copy, Batching, raw packets in user space.
+* __Kernel address protection mechanisms__
+
+<aside class="notes">
+ZC, Batching, and custom application : same benefit as DPDK.
+All calls are through kernel- kernel and other application code is secure.
+</aside>
+</textarea>
+</section>
+<section data-markdown>
+<textarea>
+### Comparisons
+![netmap](./figs/tablelastslide.png)
+
+<aside class="notes">
+ZC, Batching, and custom application : same benefit as DPDK.
+All calls are through kernel- kernel and other application code is secure.
+</aside>
+</textarea>
+</section>
+<section data-markdown>
+<textarea>
+### Why DPDK?
+* State-of-the art
+
+* Intel and Other Big Telecom companies.
+
+* Large Community Support - part of Linux Foundation.
+
+
+<aside class="notes">
+	Algorithmic techniques and data structures.
+Cuckoo Hashing, DIR 24-8, Hardware transactional memory support, and other network support.
+</aside>
+</textarea>
+</section>
+<section data-markdown>
+<textarea>
+## Thank You
+### Questions?
+
+</textarea>
+</section>
+<section data-markdown>
+<textarea>
+## References
+* Submitted with the Seminar Report. <a href = >Click Here.</a>
+
+
+</textarea>
+</section>
 <!--
 <section>
 	Frameworks over DPDK
