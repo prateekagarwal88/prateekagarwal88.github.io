@@ -457,12 +457,67 @@ Uses Cuckoo Hashing Technique
 			<section><h4>Multithread Support</h4><p>Lock-Free :RCU mechanisms</p><p>Transactional Memory</p></section>
 		</section>
 <section>
-<h4>Membership Library</h4>
+<section>
+<h2>Membership Library</h2>
 <p>Is the element in the set?</p>
 <p>Space Efficient and Time efficient Algorithms</p>
 <p><strong>Tradeoff</strong>: False Positive Results</p>
 
 </section>
+<section><h2>Use Case: Load Balancing</h2>
+	<p></p>
+	<p></p>
+
+<p>New Flow: Least Loaded Core</p>
+<p></p>
+
+<p>Existing Flow: Designated Core</p>
+<p> Can handle False Positive cases.
+</section>
+</section>
+<section>
+<h2>Membership Library: Bloom Filters</h2>
+
+<div width="900px" height = "200px">
+		<img src="figs/c5f9.png" width= "60%"  style="border:none">
+	</img>
+</div>
+<div>
+	<p> 3 Hash Functions.</p>
+	<p> x,y,z are the members</p>
+	<p>Is w in the set</p>
+	<p>Deletion not possible.</p>
+</div>
+</section>
+<section>
+<h2>Bloom Filters : False Positive Rate</h2>
+
+<div width="900px" height = "200px">
+		<img src="figs/c5f9.png" width= "60%"  style="border:none">
+	</img>
+</div>
+<div>
+	<p>Increases with: number of elements inserted, number of hash functions</p>
+	<p> Decreases with : size of the bloom filter</p>
+</div>
+</section>
+<section>
+<section><h2>Membership Library : Hash table based Set Summaries</h2>
+	<div>
+<p>Partial Key Match.</p>
+<p> Eviction Allowed: False Negative Results.</p>
+	</div>
+
+</section>
+<section><h4>HTSS: Use Case</p>
+	<div>
+<p>Web cache - false negative  cases acceptable.</p>
+
+	</div>
+</section>
+</section>
+
+<section> LPM Library</section>
 		</div>
 	</div>
 		<script src="js/reveal.js"></script>
