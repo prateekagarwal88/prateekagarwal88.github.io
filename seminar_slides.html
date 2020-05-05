@@ -16,31 +16,7 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		<script type="text/javascript">
-		google.charts.load('current', {'packages':['corechart']});
-	  google.charts.setOnLoadCallback(drawChart);
-	  function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-			['Cost Effective','Performance'],
-			[ 0,      1],
-			[ 1,      0],
-			[ 1,     1],
-			[ 1,0.04],
-		]);
 
-		var options = {
-		title: 'Performance vs. Cost Effectiveness',
-		hAxis: {title: 'Cost Effective/Flexiblility', minValue: 0, maxValue: 1},
-		vAxis: {title: 'Performance', minValue: 0, maxValue: 1},
-		legend: 'none'
-		};
-
-		var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
-
-		chart.draw(data, options);
-	};
-	</script>
 		<style>
 			.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
 						  text-transform: none;
@@ -110,11 +86,11 @@
 							</img>
 						</div>
 					</section>
-					<section> <h4> Multiple memory copies</h4>
+					<section> <h4>Extra Copy</h4>
 						<h7> Payload processed in User Space</h7>
 					<div class= "figurebox">
 							<img src="figs/slides_mmc.png" width= "60%" height = "60%" style="border:none" >
-						</img>
+						</img></div>
 </section>
 					<section> <h2> Kernel Buffers (Sk_buff) </h2>
 						<ul>
@@ -131,64 +107,106 @@
 					<div class="figurebox">
 							<img src="figs/mot1py1.png" width= "70%" height = "90%" style="border:none">
 						</img>
-
+					</div>
 				</section>
 
 
-		<section>Alternatives
+				<section>  Data Plane Development Kit
 
-			<div class= "kerneldemo">
-
+				</section>
+				<section>
+					<section>Main Features</section>
+					<section><h2>Polling</h2>
+							<h4>Processed in Bulk - Amortization of overhead</h4>
+							<div width= "900px" height = "500px">
+								<img src="figs/gmail.png" width= "15%" height = "15%"  style="border:2px">
+								</img>
+							</div>
+					</section>
+					<section><h2>Zero-Copy</h2>
+							<h4>Directly to User-space</h4>
+							<div class= "figurebox">
+									<img src="figs/slide_zc.png" width= "60%" height = "60%" style="border:none" >
+								</img></div>
+					</section>
+					<section> <h2>Flexible Processing </h2>
+							<h4>E.g. Customized software in IPv6 router.</h4>
+					</section>
+				</section>
+				<section>
+		<section><section><h4>Run-To-Completion vs. Pipeline</h4></section>
+			<div class="figurebox">
+					<img src="figs/slide_moe.png" width= "100%" height = "70%" style="border:none">
+				</img>
 			</div>
-			<aside class="notes">
-				<!-- 25x: on small packets 64 bytes.
-				IB: infiniband and HPC -->
-			</aside>
-			<script>
-				document.getElementById("chart_div").onclick = function() {myFunction()};
-				var count = 0;
-				function myFunction() {
-					count= count+1;
-
-					if(count==1){
-						document.getElementById("trad").style.display = "block";
-
-						return;
-					}
-					if(count==2){
-						document.getElementById("sph").style.display = "block";
-						return;
-					}
-					if(count==3){
-						document.getElementById("napi").style.display = "block";
-						return;
-					}
-					if(count==4){
-						document.getElementById("dpdk").style.display = "block";
-
-						return;
-					}
-					if(count==5){
-						document.getElementById("twofivex").style.display = "block";
-
-						return;
-					} else{
-						count = 0;
-						document.getElementById("twofivex").style.display = "none";
-						document.getElementById("dpdk").style.display = "none";
-						document.getElementById("napi").style.display = "none";
-						document.getElementById("sph").style.display = "none";
-						document.getElementById("trad").style.display = "none";
-
-					}
-
-					}
-			</script>
-
 		</section>
-		<section>Animation for DPDK
 
+
+</section>
+<section>
+<section>Poll Mode Drivers
+	<div class= "figurebox">
+			<img src="figs/c3f1.png" width= "80%" height = "100%" style="border:2px">
+		</img>
+	</div>
+</section>
+<section><h4>Network Drivers and Devices</h4>
+	<div class="figurebox">
+			<img src="figs/devicedriver1.png" width= "60%" height = "80%" style="border:none">
+		</img>
+	</div>
+</section>
+
+<!-- <section><h4>Packet Transfer </h4>
+	<div width="900" height = "256px" >
+			<img src="figs/c3f2.png" width= "60%" height = "80%" style="border:none">
+		</img>
+	</div>
+</section> -->
+
+<section><h4>Available PMDs</h4>
+<ol>
+	<li>igb_uio- maps device registers in <i>sysfs</i> file system.</li>
+	<li>vfio - IOMMU support (use GVA directly) </li>
+	<li> Software PMDs (interact with packet capture library) </li>
+
+</ol>
+</section>
+<section><h4>Control APIs</h4>
+	<div class="figurebox">
+			<img src="figs/c3f5.png" width= "60%" height = "100%" style="border:none">
+		</img>
+	</div>
+</section>
+<section><h4>Configuration and Statistics APIs</h4>
+	<ul>
+<li>Offloading Calculations - CRC, Checksums etc. in Hardware</li>
+<li>Directing Traffic - Drop or Divert, Tunneling</li>
+<!-- <li></li> -->
+<li>Stat APIs - Traffic Volume, Drop Rates etc.</li>
+	</ul>
+</section>
+
+</section>
+		<section><h4>DPDK: Core</h4>
+			<div class="figurebox">
+					<img src="figs/c2f1.png" width= "70%" height = "90%" style="border:none">
+				</img>
+			</div>
 		</section>
+<!-- application libraries descripton here  -->
+
+
+
+		<section><h4>DPDK: Application</h4>
+			<div class="figurebox">
+					<img src="figs/c2f1.png" width= "70%" height = "90%" style="border:none">
+				</img>
+			</div>
+		</section>
+
+
+
 		<section>Pipeline model Animation
 			<p>Limitation:cache bouncing</p>
 			<p>Unnecessary communication overhead</p>
