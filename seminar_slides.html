@@ -534,7 +534,7 @@ Uses Cuckoo Hashing Technique
 	</div>
 	<p>At most 2 memory accesses.</p>
 	<aside class="notes">
-		Rules are generally smaller than 24 bits.
+		Rules are generally smaller than 24 bits. So tbl8 are required in small numbers.
 	</aside>
 </section>
 
@@ -547,8 +547,74 @@ Uses Cuckoo Hashing Technique
 
 </section>
 
+<section><h2>LPM: IPv6</h2>
+	<div style="width:900px; height:400px">
+					<img src="figs/c5f11.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section>
+<section><h2>IPv6: Memory Accesses</h2>
+	<div style="width:900px; height:400px">
+					<img src="figs/ip6table.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+</section>
+<section>
+	Frameworks over DPDK
 
 </section>
+<section><h4>Vectorized Packet Processing (VPP)</h4>
+	<p>DPDK batches I/O.</p>
+	<p> <strong>VPP batches computation.</strong>
+
+</section>
+<section><h4> Batching Computation </h4>
+
+	<div style="width:900px; height:400px">
+					<img src="figs/c7f1.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+
+
+</section>
+<section>
+<section><h4> VPP: Main Advantages </h4></section>
+<section><p>Warm I-cache.
+	<aside class="notes">
+		<p> Same instructions over new data.</p>
+	</aside></p></section>
+<section><p>Amortized Function calls
+	<aside class="notes">
+		<p> Per-packet function call overhead is low</p>
+	</aside></p></section>
+<section><p>Data Prefetch and Multi-Loop</p>
+	<div style="width:900px; height:400px">
+					<img src="figs/c7f2.png" width= "60%"  style="border:none">
+		</img>
+	</div>
+
+
+	<aside class="notes">
+		<p>Data can be prefetched before the next iteration.</p>
+		<p>multiloop for parallel execution</p>
+
+	</aside>
+</section>
+</section>
+
+<section>
+Transport Layer Development Kit
+
+</section>
+
+
+<!--
+<section>
+	Frameworks over DPDK
+
+</section> -->
+
+
 		</div>
 	</div>
 		<script src="js/reveal.js"></script>
