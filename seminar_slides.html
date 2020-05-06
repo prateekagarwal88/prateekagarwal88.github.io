@@ -198,7 +198,18 @@
 			</aside>
 		</section>
 
-
+		<section><h4>DPDK: Core</h4>
+			<div class="figurebox">
+					<img src="figs/c2f1.png" width= "70%" height = "90%" style="border:none">
+				</img>
+			</div>
+			<aside class="notes">
+				 Timer, memory and driver are the core components of the DPDK system.
+				 As the kernel is unavailable, DPDK provides timer facilities.
+				 Timer facilities include generating timed interrupts for calling functions
+				 asynchronously. We will discuss drivers and memory one by one.
+			</aside>
+		</section>
 <!-- </section> -->
 <!-- <section> -->
 <section>Poll Mode Drivers
@@ -227,37 +238,48 @@
 
 	</aside>
 </section>
+<section data-markdown>
 
-<section><h4>Available PMDs</h4>
+<textarea>
+#### Available PMDs
+* igb_uio
+
+* vfio - IOMMU
+
+* Software PMDs
+
+<aside class="notes">
+	uio and vfio are kernel subsystems which are used in setting up device drivers.
+	They provide mapping of device registers and DMA memory into the sysfs file system.
+	vfio additionally provides IOMMU support. IOMMU is a hardware unit present on the NICs.
+	Virtual addresses can be directly used for interaction. This provides protection to the kernel code.
+	Software PMDs are based on packet capture library.
+</aside>
+</textarea>
+</section>
+<!-- <section><h4>Available PMDs</h4>
 <ol>
 	<li>igb_uio- maps device registers in <i>sysfs</i> file system.</li>
 	<li>vfio - IOMMU support (use GVA directly) </li>
 	<li> Software PMDs (interact with packet capture library) </li>
 
 </ol>
-</section>
+</section> -->
 <section><h4>Control APIs</h4>
 	<div class="figurebox">
 			<img src="figs/c3f5.png" width= "60%" height = "100%" style="border:none">
 		</img>
 	</div>
-</section>
-<section><h4>Configuration and Statistics APIs</h4>
-	<ul>
-<li>Offloading Calculations - CRC, Checksums etc. in Hardware</li>
-<li>Directing Traffic - Drop or Divert, Tunneling</li>
-<!-- <li></li> -->
-<li>Stat APIs - Traffic Volume, Drop Rates etc.</li>
-	</ul>
+	<aside class="notes">
+		 we can configure offload of calculations and
+		traffic redirection on a capable NIC.
+		Stat APIS help us to keep record of traffic volume, drop rates etc.
+	</aside>
 </section>
 
+
 <!-- </section> -->
-		<section><h4>DPDK: Core</h4>
-			<div class="figurebox">
-					<img src="figs/c2f1.png" width= "70%" height = "90%" style="border:none">
-				</img>
-			</div>
-		</section>
+
 <!-- core libraries descripton here  -->
 <section>
 <section>Mempool Library
@@ -265,12 +287,19 @@
 			<img src="figs/ring.svg" width= "90%" height = "70%" style="border:none">
 		</img>
 	</div>
+	<aside class = "notes">
+mempool is the allocatore of fixed size memoruy buffers. The ring stores the addresses of these buffers.
+	</aside>
 </section>
 <section>Mempool Library: Local Cache
 	<div class="figurebox">
 			<img src="figs/object_cache.svg" width= "90%" height = "70%" style="border:none">
 		</img>
 	</div>
+	<aside class = "notes">
+		Some fixed quota of buffers are reserved for a core. This provides better cache locality.
+		When cache is empty, buffers are moved in the local cache.
+	</aside>
 </section>
 <!-- <section>Mempool Library: mbuf
 	<div class="figurebox">
@@ -285,36 +314,40 @@
 			<img src="figs/c4f2.png" width= "90%" height = "70%" style="border:none">
 		</img>
 	</div>
+	<aside class = "notes">
+		metadata contains  length of the payload, the payload starting address and other info.
+		Headroom and tail room are provided for cache alignment.
+		Pay load is the raw packet received at the mbuf.
+	</aside>
 </section>
 <!-- </section> -->
 <section>multisegmented mbuf
 	<div class="figurebox">
 			<img src="figs/c4f3.png" width= "90%" height = "70%" style="border:none">
 		</img>
-	</div>
-</section>
-<section><h4> metadata and payload</h4>
-	<p>
-<ul>
-<li> <strong>Metadata</strong> - next ptr, payload length, flags for HW offload</li>
-	<li><strong>Payload</strong> - Encapsulated Raw Packet</li>
-</ul>
-</p>
+	</div>	<aside class = "notes">
+			In case of large packets, multiple mbufs are used.
+		</aside>
 </section>
 </section>
-<section>
-	<section>Ring Library</section>
-<section><p>Lockless Rings (using CAS)</p></section>
-<section><p>Handle Concurrent Requests	</p></section>
-</section>
+	<section>Ring Library : Lockless Rings
+		<aside class = "notes">
+				Ring library provides  lockless rings to handle concurrent requests.
+			</aside>
+	</section>
 <section><h4>CAS Review</h4>
 	<div class="figurebox">
 			<img src="figs/c4f4.png" width= "100%"  style="border:none">
 		</img>
 	</div>
+	<aside class = "notes">
+			Atomic instruction. Read the location in local variable,
+			make changes and if the local variable matches with the location, return success.
+		</aside>
+
 </section>
 <section>
-<section><h4>Dequeue: Flowchart</h4>
+<section><h4>Single Consumer Dequeue: Flowchart</h4>
 	<div class="figurebox">
 			<img src="figs/dequeuedemo.png" width= "60%"  style="border:none">
 		</img>
@@ -355,6 +388,9 @@
 	<div class="figurebox">
 			<img src="figs/demo2.png" width= "60%"  style="border:none">
 		</img>
+		<aside class = "notes">
+CAS fails on core 2, global reserver is moved by core 1, Core 2 retries again
+			</aside>
 	</div>
 </section>
 <section><h4>Enqueue: 3</h4>
@@ -362,19 +398,27 @@
 			<img src="figs/demo3.png" width= "60%"  style="border:none">
 		</img>
 	</div>
+	<aside class = "notes">
+Objects are filled, and  now the global filler pointer is moved by both the threads
+		</aside>
 </section>
 <section><h4>Enqueue: 4</h4>
 	<div class="figurebox">
 			<img src="figs/demo4.png" width= "60%"  style="border:none">
 		</img>
 	</div>
+	<aside class = "notes">
+The pointer moves ahead on core 1.
+		</aside>
 </section>
 <section><h4>Enqueue: 5</h4>
 	<div class="figurebox">
 			<img src="figs/demo5.png" width= "60%"  style="border:none">
 		</img>
 	</div>
-
+	<aside class = "notes">
+	And finally on core 2.
+		</aside>
 </section>
 </section>
 <section>
@@ -384,9 +428,24 @@
 <li>Fewer TLB misses</li>
 <li>Enables pinned memory.</li>
 </ol>
+<aside class = "notes">
+DPDK preallocates huge pages at the start.
+TLB requires lower number of entries to map the entire memory.
+TLB misses are avoided.
+Huge pages of size 1 GB enables pinned memory. The virtual to physical address
+mapping remains intact and page faults are avoided.
+	</aside>
 </section>
-<section>NUMA aware Allocation</section>
-<section> Dynamic Memory Management</section>
+<section>NUMA aware Allocation
+	<aside class = "notes">
+	DPDK data structures are NUMA aware explicitly. The memory to a core is provided from the local NUMA region.
+		</aside></section>
+<section> Dynamic Memory Management - Efficient Utilization
+	<aside class = "notes">
+		DPDK can request additional memory at run time in latest versions.
+		Too much at the start - Inefficient Utilization. Too little - failure.
+		</aside>
+</section>
 </section>
 
 		<section><h4>DPDK: Application</h4>
@@ -394,6 +453,10 @@
 					<img src="figs/c2f2.png" width= "70%" style="position:relative;border:none;top:50px;">
 				</img>
 			</div>
+			<aside class = "notes">
+			 Hash , LPM and membership library provides support to user applications.
+			 Th edevelopers can also develop their independent solutions.
+				</aside>
 		</section>
 
 <section>
@@ -497,10 +560,11 @@ Uses Cuckoo Hashing Technique
 				</script>
 				<aside class="notes">
 					<ul>
-						<li> node:element and edge:connects two possible locations</li>
-						<li> Constant time lookup/deletion</li>
-						<li>constant amortized cost</li>
-						<li>Rehasing in case of failed insertion(element with same edge property)</li>
+
+						<li>node:element and edge:connects two possible locations</li>
+						<li>Search at atmost 2 locations.</li>
+						<li>Insertion is at constant amortized cost</li>
+						<li>Rehasing in case of failed insertion</li>
 					</ul>
 				</aside>
 		</section>
@@ -736,7 +800,7 @@ Cores are explicitly allocated.
 <section data-markdown>
 
 <textarea>
-### Netslices: Drawbacks
+### Netslices: Drawback
 <!-- * Multiple memory copies -->
 * Multiple memory copies.
 <aside class="notes">
@@ -797,7 +861,7 @@ User space driver given direct access to NIC rings.
 * kernel system calls.
 
 <aside class="notes">
-	Preallocated Buffers , just like DPDK
+	Preallocated Buffers , just like DPDK.
 Netmap rings stores offsets in the shared memory region.
 ioctl, epoll, select ans other system calls.
 </aside>
@@ -860,11 +924,6 @@ Cuckoo Hashing, DIR 24-8, Hardware transactional memory support, and other netwo
 </textarea>
 </section>
 
-<!--
-<section>
-	Frameworks over DPDK
-
-</section> -->
 
 
 		</div>
@@ -872,39 +931,24 @@ Cuckoo Hashing, DIR 24-8, Hardware transactional memory support, and other netwo
 		<script src="js/reveal.js"></script>
 
 		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
+
 			Reveal.initialize({
 				hash: true,
 				math: {
 		mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
 		config: 'TeX-AMS_HTML-full', // See http://docs.mathjax.org/en/latest/config-files.html
-		// pass other options into `MathJax.Hub.Config()`
 		TeX: { Macros: { RR: "{\\bf R}" } }
 	},
-	// multiplex: {
-	// 	// Example values. To generate your own, see the socket.io server instructions.
-	// 	secret: null, // Obtained from the socket.io server. Gives this (the master) control of the presentation
-	// 	id: '9042bd57f7a77a85', // Obtained from socket.io server
-	// 	url: 'https://reveal-js-multiplex-ccjbegmaii.now.sh' // Location of socket.io server
-	// },
-
 				dependencies: [
-
-
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/zoom-js/zoom.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/highlight/highlight.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/math/math.js', async: true },
-
-
 				]
 			});
 		</script>
 	</body>
 </html>
 <html>
-  
