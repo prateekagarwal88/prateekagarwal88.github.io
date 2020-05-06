@@ -34,18 +34,27 @@
 						<small>Prateek Agarwal</small>
 					</p>
 				</section>
-				 <section>Motivation
-				<!-- <script src='plugin/anime/anime.js'></script> -->
+				 <!-- <section>Motivation
+			 <script src='plugin/anime/anime.js'></script>
 
+				</section> -->
+
+				<section data-markdown>
+				<textarea>
+				### Motivation
+				</textarea>
 				</section>
-
-
 
 				<section>
 					<div class= "figurebox">
 							<img class = "images" src="figs/packets.png" style="width:800px;height:500px;border:none">
 						</img>
 					</div>
+					<aside class="notes">
+						Data packets contain the actual payload.
+						Control Packets carry network maintenance and management information.
+						Bulk of the traffic is in the form of data packets.
+					</aside>
 				</section>
 
 								<section><h4>Fast Path Operations</h4>
@@ -53,13 +62,24 @@
 											<img class = "images" src="figs/c1f1.png" style="width:800px;height:500px;border:none">
 										</img>
 									</div>
+									<aside class="notes">
+										The figure shows some of the time critical operations performed on the data packets.
+										Forwarding operations are required for filtering and lookup operations.
+										Header operations such as time to live field updation and checksum calculation helps in avoiding indefinite looping and validation of the packet
+									</aside>
 								</section>
 
 				<section>
-					<h4> Link Rate vs. Processing Speed</h4>
+					<h4> Link Rates vs. Processing Speeds</h4>
 					<div class= "figurebox">
 <iframe src="https://giphy.com/embed/l0HlUIl8snxmgscE0" width="600" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 					</div>
+					<aside class="notes">
+						Linux stack is not able to keep pace with the wire rates.
+						Wire rates have increased continuously over the years.
+						The number of interfaces on a card have also increased dramatically.
+
+					</aside>
 				</section>
 				<section>Linux Network Stack
 						<div class= "figurebox">
@@ -67,10 +87,11 @@
 							</img>
 						</div>
 						<aside class="notes">
-							<ol>
-								<li> color change represents a memory copy.</li>
-								<li>header is processed in the kernel. So it is disappearing</li>
-								</ol>
+							Let us look at the path of arrived packet.
+							TCP/IP stack is implemented in kernel.
+							When a packet arrives on NIC, the packet is copied into RAM or L3 cache and an interrupt is raised.
+							All headers are processed in the kernel and payload is copied into the user application.
+
 						</aside>
 				</section>
 				<!-- vertical slides -->
@@ -85,22 +106,34 @@
 							<img src="figs/WhatsApp.svg" width= "15%" height = "15%" style="border:2px">
 							</img>
 						</div>
+						<aside class="notes">
+							An interrupt is raised on the receipt and arrival of every packet.  The interrupt is acknowledged and processing is deferred
+							to the tasklets. If the arrival rate is very high, most of the CPU time is spent in servicing the interrupt.
+						</aside>
 					</section>
 					<section> <h4>Extra Copy</h4>
 						<h7> Payload processed in User Space</h7>
 					<div class= "figurebox">
 							<img src="figs/slides_mmc.png" width= "60%" height = "60%" style="border:none" >
 						</img></div>
+						<aside class="notes">
+							After the headers are processed, then packets are copied into the user space. User applications are in different virtual address space,
+							so an extra copy is performed which hampers the performance.
+						</aside>
 </section>
 					<section> <h2> Kernel Buffers (Sk_buff) </h2>
-						<ul>
-							<li> Allocation/Freeing of structure</li>
-							<li>General-purpose Solution.(Ipv4 or IPv6)</li>
-						</ul>
+						<!-- <ul> -->
+							<!-- <li> Allocation/Freeing of structure</li> -->
+							<!-- <li>General-purpose Solution.(Ipv4 or IPv6)</li> -->
+						<!-- </ul> -->
 						<div style="position:relative;width:500px; height: 250px; left:200px">
 								<img src="figs/c1f3.png" width= "100%" height = "100%" style="border:none">
 							</img>
-
+							<aside class="notes">
+							skbuff is the structure for storing the packet in the kernel. Many cycles are wasted on the allocation/deallocation of
+						skbuff on the receipt and transfer of every packet. There is a significant overhead in matching the protocol fields at various layers.
+						If we know the router is IPv4 compatible, there is no need to match agains IPv6.
+							</aside>
 					</section>
 				<!-- </section> -->
 				<section> <h4> Alternatives</h4>
@@ -108,6 +141,12 @@
 							<img src="figs/mot1py1.png" width= "70%" height = "90%" style="border:none">
 						</img>
 					</div>
+					<aside class="notes">
+						Linux stack is a cost effective and flexible solution but low on performance.
+						Another approach is to have  processing either in NIC in the form of network processors
+						or use special purpose hardware with minimal software support.
+						DPDK is a software-based solution having both the benefits of performance and cost effectiveness.
+					</aside>
 				</section>
 
 
@@ -117,20 +156,32 @@
 				<!-- <section> -->
 					<section>Main Features</section>
 					<section><h2>Polling</h2>
-							<h4>Processed in Bulk - Amortization of overhead</h4>
+							<!-- <h4>Processed in Bulk - Amortization of overhead</h4> -->
 							<div width= "900px" height = "500px">
 								<img src="figs/gmail.png" width= "15%" height = "15%"  style="border:2px">
 								</img>
 							</div>
+							<aside class="notes">
+								Packets are processed in batches by polling. This reduces per packet overhead associated with
+								the interrupt based solutions.
+							</aside>
 					</section>
-					<section><h2>Zero-Copy</h2>
-							<h4>Directly to User-space</h4>
+					<section><h4>Zero-Copy - User space cooperative multiprocessing</h4>
 							<div class= "figurebox">
 									<img src="figs/slide_zc.png" width= "60%" height = "60%" style="border:none" >
 								</img></div>
+								<aside class="notes">
+									Network Drivers, application etc., everything is in user space.
+									 Drivers, Library, user application are loaded in a single address
+									 space to avoid preemption and multiple memory copies.
+								</aside>
 					</section>
 					<section> <h2>Flexible Processing </h2>
-							<h4>E.g. Customized software in IPv6 router.</h4>
+							<h4>E.g. Customized software in IPv4 router.</h4>
+							<aside class="notes">
+								If we expect only IPv4 packets on a node, we can design customized
+								application for it without carrying unnecessary checks.
+							</aside>
 					</section>
 				</section>
 				<!-- <section> -->
@@ -139,6 +190,12 @@
 					<img src="figs/slide_moe.png" width= "100%" height = "70%" style="border:none">
 				</img>
 			</div>
+			<aside class="notes">
+				Run to completion and pipeline are two models of execution.
+				In RTC model, the packets are processed on a single core.
+				There is a controlling core in the pipeline model, which redirects packets to the working cores.
+				RTC model is preferred because of better cache and memory locality.
+			</aside>
 		</section>
 
 
@@ -149,20 +206,27 @@
 			<img src="figs/c3f1.png" width= "80%" height = "100%" style="border:2px">
 		</img>
 	</div>
+	<aside class="notes">
+		PMDs are device drivers implemented in user space.
+		They interact with NIC to access packets directly and are asynchronoulsy
+		delivered to cores though pointer rings. The ring will be discussed later in
+		the presentation.
+	</aside>
 </section>
 <section><h4>Network Drivers and Devices</h4>
 	<div class="figurebox">
 			<img src="figs/devicedriver1.png" width= "60%" height = "80%" style="border:none">
 		</img>
 	</div>
-</section>
+	<aside class="notes">
+		A brief review of network drivers and devices. NICs contain device registers which
+		store control  information and variables related to the device.
+		Registers are mapped in the common memory space.
+		RAM has space reserved for storing the packets.
+		NICs directly transfer the packets to RAM without the involvement of the CPU.
 
-<!-- <section><h4>Packet Transfer </h4>
-	<div width="900" height = "256px" >
-			<img src="figs/c3f2.png" width= "60%" height = "80%" style="border:none">
-		</img>
-	</div>
-</section> -->
+	</aside>
+</section>
 
 <section><h4>Available PMDs</h4>
 <ol>
@@ -835,7 +899,7 @@ Cuckoo Hashing, DIR 24-8, Hardware transactional memory support, and other netwo
 					{ src: 'plugin/highlight/highlight.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/math/math.js', async: true },
-				
+
 
 				]
 			});
@@ -843,221 +907,4 @@ Cuckoo Hashing, DIR 24-8, Hardware transactional memory support, and other netwo
 	</body>
 </html>
 <html>
-  <!-- <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Age', 'Weight'],
-          [ 8,      12],
-          [ 4,      5.5],
-          [ 11,     14],
-          [ 4,      5],
-          [ 3,      3.5],
-          [ 6.5,    7]
-        ]);
-
-        var options = {
-          title: 'Age vs. Weight comparison',
-          hAxis: {title: 'Age', minValue: 0, maxValue: 15},
-          vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
-          legend: 'none'
-        };
-
-        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
-
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <div id="chart_div" style="width: 900px; height: 500px;"></div>
-  </body>
-</html> -->
-<!-- <div class = "kerneldemo">
-	<div class="userspace">
-			<span class="application1">A1</span>
-			<span class="application1">A2</span>
-			<span class="application1">A3</span>
-			<p style="position:relative;top:-30px;"> <span class="labels">User</span></p>
-	</div>
-	<div class="kernelspace">
-	<p class = "kk"></p>
-	<p><span class="labels">Kernel</span> </p>
-	</div>
-	<div class = "NIC">NIC</div>
-	<div class= "packet">
-		<div class="payload"></div>
-		<div class="header1"></div>
-	</div> -->
-	<!-- <script src='plugin/anime/anime.js'></script>
-	<script>
-		var t1 = anime.timeline({
-			easing:'linear',
-			loop:true
-		});
-		t1.add({
-			targets:['.payload', '.header1'],
-			keyframes: [
-		{translateX: 200, duration: 1000, easing:'linear'}
-		]
-		});
-		t1.add({
-			targets:'.header1',
-			translateY:-50,
-			background:'#FF0000',
-			easing: 'linear',
-
-		},1000);
-		t1.add({
-			targets:'.payload',
-			translateY:-50,
-			background:'#00FF00',
-			easing: 'linear',
-
-		},1000);
-		t1.add({
-			// moving to user
-			targets:'.payload',
-			translateY:-250,
-			// background:'#0000FF',
-			easing: 'linear',
-
-		},2000);
-		t1.add({
-			// moving to user
-			targets:'.header1',
-			translateY:-250,
-			easing: 'linear',
-			background:'#ACCDA3',
-		},2000);
-		t1.add({
-			// moving to user
-
-			targets:'.payload',
-			translateY:{value:'-=50'},
-			background:'#0000FF',
-			easing: 'linear',
-
-		});
-		t1.add({
-			targets:'.payload',
-			translateY:{value:'-=50'},
-			translateX:{value:'-=25'},
-			// background:'#FFFFFF',
-			easing: 'linear',
-
-		});
-
-	</script> -->
-	<!-- </div> -->
-	<!-- <div id="chart_div" style="width: 900px; height: 500px;"></div>
-	<div id = "trad">
-		Linux
-	</div>
-	<div id = "sph">
-		Special Purpose Hardware(IB)
-	</div>
-
-	<div id="napi">
-		NAPI(Polling)
-	</div>
-	<div id="dpdk">
-		DPDK
-	</div>
-	<div id="twofivex">
-		25X faster
-	</div> -->
-<!-- <p><a href="https://giphy.com/gifs/cute-run-cutest-gif-ever-l0HlUIl8snxmgscE0"> -->
-<!-- </section>
-		<section><h4> PMD driver</h4>
-			<p>Support for ixgbe and virtio drivers</p>
-			<p>Kernel subsystems: vfio and uio</p>
-			<p>One(single) and burst mode available </p>
-			<p>Interrupts disabled (Exception: Link status change)</p>
-			<p>Hardware offloading feature: checksumming, VLAN insertion,  segmentation, setting of bit in mbuf metadata</p>
-		</section> -->
-				<!-- <section>
-				<h4>DPDK:Core </h4>
-				<div id="container">
-			  <div id="no1"><a href="">Core Functions</a></div>
-			  <div id="line1"></div>
-				<div id="line2"></div>
-				<div id="line3"></div>
-			   <div id="line6"></div>
-			   <div id="no2"><a href="#">mempool</a></div>
-			   <div id="no3"><a href="#">timer</a></div>
-				<div id="memline1"></div>
-				<div id="memline2"></div>
-				<div id="memline3"></div>
-				<div id="memline4"></div>
-				<div id="memline5"></div>
-				<div id="mbuf"><a href="#">mbuf</a></div>
-				<div id="ring"><a href="#">Ring</a></div>
-			</div>
-			</section> -->
-<!--
-		<section>mempool: ring
-			<div class ="kerneldemo">
-				<img src="svgs/ring.svg" style="width:800px;height:500px;border:none">
-			</img>
-			</div>
-
-		</section> -->
-		<!-- <section> mempool: mbuf
-			<div class ="kerneldemo">
-				<img src="svgs/mbufring.svg" style="width:800px;height:500px;border:none">
-			</img>
-			</div>
-
-		</section> -->
-		<!-- <section>mempool: local cache
-			<div class ="kerneldemo">
-				<img src="svgs/object_cache.svg" style="width:800px;height:500px;border:none">
-			</img>
-			</div>
-			<aside class="notes">
-				cache line bouncing during cache operation.
-			</aside>
-		</section>
-		<section> mbuf
-			<div class ="kerneldemo">
-				<img src="svgs/mbuf2.svg" style="width:800px;height:500px;border:none">
-			</img>
-			</div>
-			<aside class="notes">
-				mbuf metadata header contains next pointer, starting address of payload, offset to account for head room, payload length length
-			</aside>
-		</section>
-		<section> mbuf:multisegment
-			<img src="svgs/mbuf3.svg" style="width:800px;height:500px;border:none">
-			</img>
-		</section> -->
-
-		<!-- <section><h4>Ring</h4>
-			Lockless design is the norm in Linux. DPDK has not modified it according to the documentation. I think it is unnecessary to go into its design here.
-		</section> -->
-		<!-- <section><h4>Timer:Notes</h4>
-		<div>
-			<ul>
-				<li>No kernel for keeping time.</li>
-				<li> HPET and TSC</li>
-				<li> One shot and periodic software timers</li>
-
-			</ul>
-			</div>
-			<aside class="notes">
-				Hardware timers .HPET and TSC both options available. HPET gives high resolution and high overhead in case of multi core architecture.
-		TSC is 64-bit time stamp counter register in x86 architecture which can be read by RTSC instruction. It has low resolution and low overhead.
-		Multiple timers are implemented in DPDK using a skip list and timers are fired after their timeout. One shot versus periodic.
-			</aside>
-		</section> -->
-		<!-- <section> Libraries for Application Layer
-		<ol>
-			<li>Hash Library: Cuckoo Hashing</li>
-			<li>Membership Library: Bloom Filters and Hash table based</li>
-
-		</ol></section> -->
+  
